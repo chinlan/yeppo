@@ -3,6 +3,7 @@
 
 <p><%= image_tag(@shot.photo.url) %></p>
 <p><%= @shot.description %></p>
+<p>標注： <%=raw tag_links(@shot.tag_list)%></p>
 
 <div id ="like">
   <% if current_user %>

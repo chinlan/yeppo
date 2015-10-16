@@ -8,6 +8,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :tag_list, "標注照片" %>
+    <%= f.text_field :tag_list, placeholder: "以 , 隔開每個標注" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :description, "作品簡介" %>
     <%= f.text_field :description %>
   </div>

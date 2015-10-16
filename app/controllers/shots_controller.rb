@@ -26,7 +26,7 @@ class ShotsController < ApplicationController
       @shot.views_count += 1
       @shot.save!
     end
-    
+
     @comment = Comment.new
     @comments = @shot.comments.all
 
@@ -62,6 +62,6 @@ class ShotsController < ApplicationController
   end
 
   def shot_params
-    params.require(:shot).permit(:description, :photo)
+    params.require(:shot).permit(:description, :photo, :tag_list)
   end
 end
