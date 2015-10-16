@@ -1,0 +1,5 @@
+
+$(".content").val("");
+
+$("#comment_table").append("<%=j render :partial => "comment", :locals => { :c => @comment } %>");
+

@@ -1,0 +1,37 @@
+<div class="container">
+<p>By <%= @user.name %>  <%= @shot.created_at %></p>
+
+<p><%= image_tag(@shot.photo.url) %></p>
+<p><%= @shot.description %></p>
+
+<div id ="like">
+  <% if current_user %>
+    <%= render :partial => "likes/like", :locals => {:user => @user, :shot => @shot, :like => @like} %>
+  <% end %>
+</div>
+
+<h2>留言</h2>
+<%= form_for @comment, :url => user_shot_comments_path(@user, @shot) ,:remote => true do |f| %>
+  
+  <div class="form-group">
+
+    <%= f.label :content, "留言內容" %>
+    <%= f.text_field :content, :class => "content" %>
+  </div>
+
+  <%= f.submit '送出留言' %>
+<% end %>
+
+<table class="table" id = "comment_table">
+  <th>留言列表</th>
+  <% @comments.each do |c| %>
+  <tr id="comment-<%= c.id %>">
+  <%= render :partial => "shot_comments/comment", :locals => { :c => c } %>
+  </tr>
+  <% end %>
+</table>
+
+
+</div>
+
+

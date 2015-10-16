@@ -1,0 +1,11 @@
+<% if @like %>
+  <%= link_to user_shot_like_path(@user, @shot, @like), :method => :delete, :class => "btn btn-warning", :remote => true do %>
+  <span>UNLIKE</span>
+  <span class = "badge"><%= @shot.likes_count %></span>
+  <% end %>
+<% else %>
+  <%= link_to user_shot_likes_path(@user, @shot), :method => :post, :class => "btn btn-success", :remote => true do %>
+    <span>LIKE</span>
+    <span class ="badge"><%= @shot.likes_count %></span>
+    <% end %>
+<% end %>

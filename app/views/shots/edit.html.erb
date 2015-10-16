@@ -1,0 +1,15 @@
+<div class="container">
+<h2>修改作品簡介</h2>
+<%= form_for @shot, :url => user_shot_path(@user, @shot), :method => :patch do |f| %>
+  
+  <div class="form-group">
+    <%= f.label :description, "作品簡介" %>
+    <%= f.text_field :description %>
+  </div>
+
+  <%= f.submit '送出' %>
+  <% end %>
+
+  <%= link_to '取消', user_path(@user) %>
+
+  </div>

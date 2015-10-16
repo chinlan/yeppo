@@ -1,0 +1,48 @@
+<div class="container">
+
+  <h1><%= @user.name %>作品集</h1>
+
+  <h2>基本資料</h2>
+  <p>姓名/工作室名稱： <%= @user.name %></p>
+  <p>暱稱： <%= @user.username %></p>
+  <p>所在地： <%= @user.location %></p>
+  <p>服務簡介： <%= @user.content %></p>
+  <p>我的作品： </p>
+     <% @user.shots.each do |s| %>
+                 <%=link_to  image_tag(s.photo.url), user_shot_path(@user, s) %>
+                 <% if @user = current_user %>
+                   <%= link_to '編輯', edit_user_shot_path(@user, s) %>
+                   <%= link_to '刪除', user_shot_path(@user, s), :method => :delete %>
+                <% end %>
+     <% end %>  
+
+     <% if @user == current_user %>
+
+  <p><%= link_to '上傳新作品', new_user_shot_path(@user) %></p>
+
+  <h2>編輯基本資料</h2>
+  <%= form_for @user, :url => user_path(@user) do |f| %>
+    <div class="form-group">
+      <%= f.label :name, '姓名/工作室名稱' %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :username, '暱稱（作品集短網址名稱）' %>
+      <%= f.text_field :username %> 
+    </div>
+
+    <div class="form-group">
+      <%= f.label :location, '所在地' %>
+      <%= f.text_field :location %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :content, '服務簡介' %>
+      <%= f.text_field :content %>
+    </div>
+
+    <%= f.submit '更新基本資料' %>
+  <% end %>
+<% end %>
+</div>
