@@ -10,6 +10,8 @@
   <% end %>
 </div>
 
+<p>瀏覽數： <%= @shot.views_count %></p>
+
 <h2>留言</h2>
 <%= form_for @comment, :url => user_shot_comments_path(@user, @shot) ,:remote => true do |f| %>
   
@@ -25,9 +27,7 @@
 <table class="table" id = "comment_table">
   <th>留言列表</th>
   <% @comments.each do |c| %>
-  <tr id="comment-<%= c.id %>">
   <%= render :partial => "shot_comments/comment", :locals => { :c => c } %>
-  </tr>
   <% end %>
 </table>
 

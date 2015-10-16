@@ -1,8 +1,9 @@
-
+    <tr id="comment-<%= c.id %>">
     <td><%= c.content %></td>
     <td><%= c.user.name %></td>
     <% if current_user && current_user == c.user %>
-    <td><%= link_to "刪除", user_shot_comment_path(@user,@shot,c), :method => :delete %>
+    <td><%= link_to "刪除", user_shot_comment_path(@user,@shot,c), :method => :delete, :remote => true %>
     </td>
     <% end %>
+    </tr>
   

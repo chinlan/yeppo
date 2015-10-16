@@ -19,6 +19,14 @@ class ShotsController < ApplicationController
 
   def show
     @shot = @user.shots.find(params[:id])
+
+    if cookies["visit-shot-#{@shot.id}"]
+    else
+      cookies["visit-shot-#{@shot.id}"] = "Ya"
+      @shot.views_count += 1
+      @shot.save!
+    end
+    
     @comment = Comment.new
     @comments = @shot.comments.all
 
