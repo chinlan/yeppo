@@ -62,6 +62,6 @@ class ShotsController < ApplicationController
   end
 
   def shot_params
-    params.require(:shot).permit(:description, :photo, :tag_list)
+    params.require(:shot).permit(:description, :photo, :tag_list, :category_id)
   end
 end

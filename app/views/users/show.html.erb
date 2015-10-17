@@ -3,6 +3,12 @@
   <h1><%= @user.name %>作品集</h1>
 
   <h2>基本資料</h2>
+  <% if @user.head.exists? %>
+    <p><%= image_tag(@user.head.url(:medium
+    )) %></p>
+  <% else %>
+    <p><%= image_tag current_user.gravatar_url %></p>
+  <% end %>
   <p>姓名/工作室名稱： <%= @user.name %></p>
   <p>暱稱： <%= @user.username %></p>
   <p>所在地： <%= @user.location %></p>
@@ -13,7 +19,7 @@
                  <% if @user = current_user %>
                    <%= link_to '編輯', edit_user_shot_path(@user, s) %>
                    <%= link_to '刪除', user_shot_path(@user, s), :method => :delete %>
-                <% end %>
+                 <% end %>
      <% end %>  
 
      <% if @user == current_user %>
@@ -26,7 +32,7 @@
       <%= f.label :name, '姓名/工作室名稱' %>
       <%= f.text_field :name %>
     </div>
-
+    
     <div class="form-group">
       <%= f.label :username, '暱稱（作品集短網址名稱）' %>
       <%= f.text_field :username %> 
@@ -40,6 +46,16 @@
     <div class="form-group">
       <%= f.label :content, '服務簡介' %>
       <%= f.text_field :content %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :head, '上傳頭像' %>
+      <%= f.file_field :head %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status, '作品集狀態' %>
+      <%= f.select :status, ['公開','隱藏'] %>
     </div>
 
     <%= f.submit '更新基本資料' %>

@@ -15,3 +15,22 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "select2";
+@import "select2-bootstrap";
+
+input[placeholder] { width: 100% !important; }
+
+.user-gravatar {
+    display: inline-block;
+    width: 32px;
+    position: relative;
+    margin: 0;
+}
+
+.user-gravatar img {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 16px;
+    top: -15px;
+}

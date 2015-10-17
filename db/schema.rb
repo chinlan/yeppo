@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016153907) do
+ActiveRecord::Schema.define(version: 20151017123406) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -41,8 +47,10 @@ ActiveRecord::Schema.define(version: 20151016153907) do
     t.datetime "photo_updated_at"
     t.integer  "likes_count",        limit: 4
     t.integer  "views_count",        limit: 4,     default: 0
+    t.integer  "category_id",        limit: 4
   end
 
+  add_index "shots", ["category_id"], name: "index_shots_on_category_id", using: :btree
   add_index "shots", ["user_id"], name: "index_shots_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
@@ -80,6 +88,11 @@ ActiveRecord::Schema.define(version: 20151016153907) do
     t.text     "content",                limit: 65535
     t.string   "fb_uid",                 limit: 255
     t.string   "fb_token",               limit: 255
+    t.string   "head_file_name",         limit: 255
+    t.string   "head_content_type",      limit: 255
+    t.integer  "head_file_size",         limit: 4
+    t.datetime "head_updated_at"
+    t.string   "status",                 limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

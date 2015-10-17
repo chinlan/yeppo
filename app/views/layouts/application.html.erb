@@ -16,6 +16,10 @@
 <p class ="alert alert-danger"><%= alert %></p>
 <% end %>
 
+ <% if current_user %>
+   Hi, <span class="user-gravatar"><%= image_tag @user.head.url(:thumb) %></span><%=  current_user.name %>
+ <% end %>
+ 
  <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
 </div>
 

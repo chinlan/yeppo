@@ -32,8 +32,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'gravtastic'
 
 gem "paperclip"
+
+gem "select2-rails", '~>3.5.9.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

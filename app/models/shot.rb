@@ -1,7 +1,9 @@
 class Shot < ActiveRecord::Base
-  validates_presence_of :photo
+  validates_presence_of :photo, :category_id
   belongs_to :user
   has_many :comments, :dependent => :destroy
+
+  belongs_to :category
 
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
