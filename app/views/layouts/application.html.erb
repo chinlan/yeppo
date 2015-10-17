@@ -18,9 +18,18 @@
 
  <% if current_user %>
    Hi, <span class="user-gravatar"><%= image_tag @user.head.url(:thumb) %></span><%=  current_user.name %>
+
+   <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
+   <%= link_to('修改密碼', edit_registration_path(:user)) %>
+   
+ <% else %>
+    <%= link_to('註冊', new_registration_path(:user)) %> |
+    <%= link_to('登入', new_session_path(:user)) %>
+    
+    <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
  <% end %>
  
- <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
+ 
 </div>
 
 <%= yield %>

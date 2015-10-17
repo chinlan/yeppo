@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   include Gravtastic
   gravtastic
+
+  scope :publicing, -> {where(:status => "公開")}
   
   has_many :comments
   has_many :shots
@@ -28,5 +30,8 @@ class User < ActiveRecord::Base
        user.name = auth.info.name   # assuming the user model has a name
      end
   end  
-       
+
+  
+
+  
 end

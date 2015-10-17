@@ -1,8 +1,10 @@
 <div class="container">
 <h1>Yeppo</h1>
-<%= link_to '我的作品集', user_path(current_user) %>
+<%= link_to '我的作品集', user_path(@user) %>
 
-<p><% @users.each do |u| %>
+
+
+<p><% @users.publicing.each do |u| %>
     <% u.shots.each do |s| %>
       <%=link_to  image_tag(s.photo.url), user_shot_path(u, s) %>
    <% end %>

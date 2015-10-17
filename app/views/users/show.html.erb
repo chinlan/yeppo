@@ -1,7 +1,7 @@
 <div class="container">
-
+  
   <h1><%= @user.name %>作品集</h1>
-
+  <% if @user.status == "公開" || @user == current_user %>
   <h2>基本資料</h2>
   <% if @user.head.exists? %>
     <p><%= image_tag(@user.head.url(:medium
@@ -21,6 +21,9 @@
                    <%= link_to '刪除', user_shot_path(@user, s), :method => :delete %>
                  <% end %>
      <% end %>  
+  <% else %>
+  <h2>尚未公開</h2>
+  <% end %>  
 
      <% if @user == current_user %>
 
