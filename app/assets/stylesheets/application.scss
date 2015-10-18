@@ -12,6 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require 'masonry/basic'
+ *= require 'masonry/centered'
+ *= require 'masonry/fluid'
+ *= require 'masonry/gutters'
+ *= require 'masonry/infinitescroll'
+ *= require 'masonry/right-to-left'
+ *= require 'masonry/transitions'
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -19,6 +26,15 @@
 @import "select2-bootstrap";
 
 input[placeholder] { width: 100% !important; }
+
+#session {
+  float:right;
+  padding: 5px;
+}
+
+.clearfix {
+  clear:both;
+}
 
 .user-gravatar {
     display: inline-block;

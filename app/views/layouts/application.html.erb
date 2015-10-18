@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yeppo</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -15,7 +16,8 @@
 <% if flash[:alert].present? %>
 <p class ="alert alert-danger"><%= alert %></p>
 <% end %>
-
+ 
+ <div id = "session" >
  <% if current_user %>
    Hi, <span class="user-gravatar"><%= image_tag @user.head.url(:thumb) %></span><%=  current_user.name %>
 
@@ -28,7 +30,8 @@
     
     <%= link_to "Facebook 登入", user_omniauth_authorize_path(:facebook) %>
  <% end %>
- 
+ </div>
+ <div class="clearfix"></div>
  
 </div>
 

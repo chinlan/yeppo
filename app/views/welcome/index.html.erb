@@ -1,12 +1,16 @@
 <div class="container">
-<h1>Yeppo</h1>
-<%= link_to '我的作品集', user_path(@user) %>
+<h1 id ="logo">Yeppo</h1>
+<p id="my_profile">
+  <% if current_user %>
+  <%= link_to '我的作品集', user_path(@user) %>
+  <% end %>
+</p>
+<div class="clearfix"></div>
 
-
-
-<p><% @users.publicing.each do |u| %>
+<div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix"> 
+<% @users.publicing.each do |u| %>
     <% u.shots.each do |s| %>
-      <%=link_to  image_tag(s.photo.url), user_shot_path(u, s) %>
+     <p class="box col3"> <%=link_to  image_tag(s.photo.url), user_shot_path(u, s) %></p>
    <% end %>
-   <% end %></p>
+   <% end %>
 </div>

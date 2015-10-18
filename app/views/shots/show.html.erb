@@ -1,39 +1,46 @@
 <div class="container">
-<p>By <%= @user.name %>  <%= @shot.created_at %></p>
+<p>By <%=link_to @user.name, user_path(@user) %>  <span id="created_at"><%= @shot.created_at %></span></p>
 
-<p><%= image_tag(@shot.photo.url) %></p>
-<p><%= @shot.description %></p>
-<p>標注： <%=raw tag_links(@shot.tag_list)%></p>
-<p>分類： <%= @shot.category.name %></p>
 
-<div id ="like">
-  <% if current_user %>
-    <%= render :partial => "likes/like", :locals => {:user => @user, :shot => @shot, :like => @like} %>
-  <% end %>
-</div>
-
-<p>瀏覽數： <%= @shot.views_count %></p>
-
-<h2>留言</h2>
-<%= form_for @comment, :url => user_shot_comments_path(@user, @shot) ,:remote => true do |f| %>
-  
-  <div class="form-group">
-
-    <%= f.label :content, "留言內容" %>
-    <%= f.text_field :content, :class => "content" %>
+<div id ="shot_wrapper">
+  <div id="shot_self">
+    <p><%= image_tag(@shot.photo.url) %></p>
+    <p id="description"><%= @shot.description %></p>
   </div>
 
-  <%= f.submit '送出留言' %>
-<% end %>
+  <div id="shot_data">
+    <p id="tag">標注： <%=raw tag_links(@shot.tag_list)%></p>
+    <p id="category">分類： <%= @shot.category.name %></p>
+    <p id ="visit">瀏覽數： <%= @shot.views_count %></p>
+    <div id ="like">
+      <% if current_user %>
+        <%= render :partial => "likes/like", :locals => {:user => @user, :shot => @shot, :like => @like} %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
 
-<table class="table" id = "comment_table">
-  <th>留言列表</th>
-  <% @comments.each do |c| %>
-  <%= render :partial => "shot_comments/comment", :locals => { :c => c } %>
-  <% end %>
-</table>
+  <div id="comment_wrapper">
+    <h2>留言</h2>
+    <%= form_for @comment, :url => user_shot_comments_path(@user, @shot) ,:remote => true do |f| %>
+  
+    <div class="form-group">
+      <%= f.label :content, "留言內容" %>
+      <%= f.text_field :content, :class => "content" %>
+    </div>
 
+      <%= f.submit '送出留言' %>
+    <% end %>
 
+    <table class="table" id = "comment_table">
+      <th>留言列表</th>
+      <% @comments.each do |c| %>
+        <%= render :partial => "shot_comments/comment", :locals => { :c => c } %>
+      <% end %>
+    </table>
+
+  </div>
 </div>
 
 

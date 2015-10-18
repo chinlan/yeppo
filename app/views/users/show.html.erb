@@ -2,6 +2,8 @@
   
   <h1><%= @user.name %>作品集</h1>
   <% if @user.status == "公開" || @user == current_user %>
+
+  <div id ="basic">
   <h2>基本資料</h2>
   <% if @user.head.exists? %>
     <p><%= image_tag(@user.head.url(:medium
@@ -13,20 +15,28 @@
   <p>暱稱： <%= @user.username %></p>
   <p>所在地： <%= @user.location %></p>
   <p>服務簡介： <%= @user.content %></p>
+  </div>
+
   <p>我的作品： </p>
+   <!--  <div id="masory-container" class="transitions-enabled infinite-scroll centered clearfix"> -->
      <% @user.shots.each do |s| %>
-                 <%=link_to  image_tag(s.photo.url), user_shot_path(@user, s) %>
+                <div id="work_set">
+                 <p id ="work"><%=link_to  image_tag(s.photo.url(:medium)), user_shot_path(@user, s) %></p>
                  <% if @user = current_user %>
-                   <%= link_to '編輯', edit_user_shot_path(@user, s) %>
-                   <%= link_to '刪除', user_shot_path(@user, s), :method => :delete %>
+                   <p id="tool"><%= link_to '編輯', edit_user_shot_path(@user, s) %>
+                   <%= link_to '刪除', user_shot_path(@user, s), :method => :delete %></p>
                  <% end %>
-     <% end %>  
+                 </div>
+     <% end %> 
+     <div class="clearfix"></div>
+    </div> 
   <% else %>
   <h2>尚未公開</h2>
   <% end %>  
+  </div>
 
      <% if @user == current_user %>
-
+ <div class="container" id ="edit_basic">
   <p><%= link_to '上傳新作品', new_user_shot_path(@user) %></p>
 
   <h2>編輯基本資料</h2>

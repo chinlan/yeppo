@@ -1,3 +1,49 @@
 // Place all the styles related to the shots controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#created_at{
+  color:#888888;
+}
+
+#tag {
+  font-size: 0.9em;
+}
+
+#category {
+  font-size: 0.9em;
+}
+
+#visit {
+  font_size: 0.9em;
+}
+
+#shot_wrapper {
+  width:80%;
+}
+
+img {
+  padding: 5px;
+}
+
+#description {
+  padding:5px;
+}
+
+#shot_self {
+  float:left;
+
+}
+
+#shot_data {
+  float:right;
+  padding: 5px;
+}
+
+#comment_wrapper {
+  padding: 5px, 0;
+}
+
+#comment_table {
+  width: 60%;
+}
