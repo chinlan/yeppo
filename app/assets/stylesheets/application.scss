@@ -12,28 +12,48 @@
  *
  *= require_tree .
  *= require_self
- *= require 'masonry/basic'
- *= require 'masonry/centered'
- *= require 'masonry/fluid'
- *= require 'masonry/gutters'
- *= require 'masonry/infinitescroll'
- *= require 'masonry/right-to-left'
+ 
  *= require 'masonry/transitions'
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 @import "select2";
 @import "select2-bootstrap";
 
 input[placeholder] { width: 100% !important; }
 
+#header {
+  background: #888888;
+
+}
+
 #session {
   float:right;
   padding: 5px;
+  color:white;
 }
 
 .clearfix {
   clear:both;
+}
+
+#nav {
+  float:left;
+  padding: 5px;
+}
+
+#nav li {
+  display: inline-block;
+  padding: 5px;
+}
+
+#nav li a {
+  color: white;
+}
+
+#nav ul {
+  padding:0;
 }
 
 .user-gravatar {
@@ -48,5 +68,5 @@ input[placeholder] { width: 100% !important; }
     width: 25px;
     height: 25px;
     border-radius: 16px;
-    top: -15px;
+    top: -8px;
 }

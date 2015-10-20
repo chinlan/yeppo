@@ -1,9 +1,17 @@
 class WelcomeController < ApplicationController
 
   def index 
-    @users = User.all
-    @shots = Shot.all
+
     @user = current_user
+   
+
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @shots = @category.shots.publicing
+
+    else
+      @shots = Shot.publicing
+    end
 
     if params[:tag]
       @shots = @shots.tagged_with(params[:tag])
@@ -11,12 +19,10 @@ class WelcomeController < ApplicationController
       @shots = @shots.all
     end
 
+
+
   end
 
-  private
-
-  def publicing?
-    @user.public? == true
-  end
+  
        
 end

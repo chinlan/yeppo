@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 #my_profile {
   float:right;
   padding: 5px;
@@ -13,32 +12,47 @@
   padding:5px 0;
 }
 
-#masonry-container {
-  background: #FFF;
-  padding: 5px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  clear: both;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
-  width: 80%;
+#banner {
+  text-align:center;
+  background: #FFFF59;
 }
 
-.clearfix:before, .clearfix:after { content: ""; display: table; }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+#banner p {
+  line-height: 30px;
+  padding: 5px;
+  margin: 10px;
+  font-size: 2em;
+}
 
-.col1 { width: 80px; }
-.col2 { width: 180px; }
-.col3 { width: 280px; }
-.col4 { width: 380px; }
-.col5 { width: 480px; }
 
-.col1 img { max-width: 80px; }
-.col2 img { max-width: 180px; }
-.col3 img { max-width: 280px; }
-.col4 img { max-width: 380px; }
-.col5 img { max-width: 480px; }
 
-.centered { margin: 0 auto; }
+#masonry-container {
+  margin: 0 auto;
+  width: 90%;
+  .box {
+    margin: 10px;
+    width: 350px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    border-radius: 7px;
+    text-align: center;
+       img {
+         max-width: 100%;
+         height: auto;
+       }
+       p {
+         font-size: 22px;
+         margin: 0;
+         padding: 25px 10px;
+         a {
+           color: #474747;
+           text-decoration: none;
+         }
+         a:hover {
+           color: #919191;
+         }
+       }
+
+    }
+}
+
+

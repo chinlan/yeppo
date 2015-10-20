@@ -1,4 +1,5 @@
 class Shot < ActiveRecord::Base
+
   validates_presence_of :photo, :category_id
   belongs_to :user
   has_many :comments, :dependent => :destroy
@@ -18,6 +19,8 @@ class Shot < ActiveRecord::Base
   validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ },
                                 size: { in: 0..1.megabytes }
 
+  scope :publicing, -> { includes(:user).where( "users.status"  => "公開"  ) }                              
+  
   def tag_list
     self.tags.map{ |t| t.name }.join(",")
   end

@@ -6,11 +6,18 @@
   <% end %>
 </p>
 <div class="clearfix"></div>
+</div>
 
-<div id="masonry-container" class="transitions-enabled infinite-scroll centered clearfix"> 
-<% @users.publicing.each do |u| %>
-    <% u.shots.each do |s| %>
-     <p class="box col3"> <%=link_to  image_tag(s.photo.url), user_shot_path(u, s) %></p>
-   <% end %>
-   <% end %>
+<div id ="banner" class="container-fluid">
+  <p>Get your ideal team for e-commerce photograph!</p>
+</div>
+
+<div id="masonry-container" class="transitions-enabled "> 
+
+  <% @shots.each do |s| %>
+   <div class="box panel panel-default"> <%=link_to  image_tag(s.photo.url), user_shot_path(s.user, s) %>
+   <p class="panel-body">By <%=link_to s.user.name, user_path(@user) %></p>
+   </div>
+ <% end %>
+  
 </div>

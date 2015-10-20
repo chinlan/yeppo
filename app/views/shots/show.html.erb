@@ -1,6 +1,7 @@
 <div class="container">
-<p>By <%=link_to @user.name, user_path(@user) %>  <span id="created_at"><%= @shot.created_at %></span></p>
-
+<div id="info">
+<p><b><span id ="author">By <%=link_to @user.name, user_path(@user) %></span></b>  <span id="created_at"><%= @shot.created_at %></span></p>
+</div>
 
 <div id ="shot_wrapper">
   <div id="shot_self">
@@ -17,6 +18,15 @@
         <%= render :partial => "likes/like", :locals => {:user => @user, :shot => @shot, :like => @like} %>
       <% end %>
     </div>
+    <div id="more">
+      <h2>看更多</h2>
+      <ul>
+      <% @last_shots = @user.shots.last(3) %>
+       <% @last_shots.each do |l| %>
+          <li><%= link_to image_tag(l.photo.url(:medium)), user_shot_path(@user, l) %></li>
+       <% end %>
+       </ul>
+    </div> 
   </div>
 </div>
 <div class="clearfix"></div>
@@ -27,7 +37,7 @@
   
     <div class="form-group">
       <%= f.label :content, "留言內容" %>
-      <%= f.text_field :content, :class => "content" %>
+      <%= f.text_area :content, :class => "content form-control" %>
     </div>
 
       <%= f.submit '送出留言' %>

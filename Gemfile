@@ -37,6 +37,7 @@ gem 'omniauth-facebook'
 gem 'gravtastic'
 
 gem "paperclip"
+gem "kaminari"
 
 gem "select2-rails", '~>3.5.9.3'
 # Use Capistrano for deployment

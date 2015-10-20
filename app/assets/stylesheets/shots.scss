@@ -2,6 +2,65 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@media(min-width: 481px) and (max-width: 1024px) {
+   #shot_self {
+    width: 80%;
+    margin: 0 auto;
+   }
+
+   #shot_data {
+    width: 80%;
+    margin: 0 auto;
+   }
+
+   #info {
+    width: 80%;
+    margin: 0 auto;
+   }
+
+   #comment_wrapper {
+   width: 80%;
+   margin: 0 auto;
+   }
+
+   #comment_table {
+    margin: 20px 0;
+    width: 100%;
+   }
+   
+
+}
+@media(min-width: 1025px){
+   #shot_self {
+     float:left;
+     width:60%;
+  }
+   #shot_self img {
+   width: 100%;
+   }
+
+   #shot_data {
+    float:right;
+    padding: 5px;
+    width: 30%;
+  }
+
+   #shot_wrapper {
+     width:80%;
+  }
+
+  #comment_table {
+  width: 100%;
+  margin: 20px 0;
+}
+}
+
+//---------------------------------
+
+#author {
+  font-size: 1.2em;
+}
+
 #created_at{
   color:#888888;
 }
@@ -15,11 +74,15 @@
 }
 
 #visit {
-  font_size: 0.9em;
+  font-size: 0.9em;
 }
 
-#shot_wrapper {
-  width:80%;
+#shot_data li {
+  display: inline;
+}
+
+#shot_data li img {
+  width: 30%;
 }
 
 img {
@@ -30,20 +93,9 @@ img {
   padding:5px;
 }
 
-#shot_self {
-  float:left;
 
-}
-
-#shot_data {
-  float:right;
-  padding: 5px;
-}
 
 #comment_wrapper {
   padding: 5px, 0;
 }
 
-#comment_table {
-  width: 60%;
-}

@@ -2,25 +2,49 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@media(min-width: 481px) and (max-width: 1024px) {
+
+
+}
+
+@media(min-width: 1025px){
+   
+}
+
+
 #basic {
+    width:80%;
+    margin:0 auto;
+    text-align:center;
+   }
 
-}
 
-#work img{
+
+#masonry-container {
+  margin: 0 auto;
   width: 90%;
-}
+  .box {
+    margin: 10px;
+    width: 350px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    border-radius: 7px;
+    text-align: center;
+       img {
+         max-width: 100%;
+         height: auto;
+       }
+       p {
+         font-size: 22px;
+         margin: 0;
+         padding: 25px 10px;
+         a {
+           color: #474747;
+           text-decoration: none;
+         }
+         a:hover {
+           color: #919191;
+         }
+       }
 
-#work_set {
-  float:left;
-  width:25%;
-
-  }
-
-#tool {
- 
-}
-
-#edit_basic {
-
-
+    }
 }

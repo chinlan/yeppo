@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+
+  get 'relationships/destroy'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
 
 
@@ -7,6 +11,20 @@ Rails.application.routes.draw do
     resources :comments, :only => [:create, :destroy], :controller => "shot_comments"
     resources :likes, :only => [:create, :destroy]
    end
+   member do
+    get :following, :followers
+  end
+  end
+
+  resources :relationships, only: [:create, :destroy]
+
+  namespace :admin do
+    resources :shots
+    resources :users do
+      collection do
+        post :bulk_update
+      end
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,36 @@
+
+<div class="container">
+<%= form_tag bulk_update_admin_users_path do %>
+<div>
+<table class="table" id ="admin_user_table">
+  <th>使用者列表: </th>
+    <% @users.each do |user| %>
+
+  <tr>
+    <td> <%= check_box_tag "ids[]", user.id, false %>
+      <%=user.name %></td>
+
+    <td><%= link_to 'edit', edit_admin_user_path(user), :class=>"btn btn-primary" %></td>
+    <td><%= link_to 'destroy', admin_user_path(user),:method => :delete, :class=>"btn btn-danger" %></td>
+  </tr>
+    <% end %>
+</table>
+
+  <%= submit_tag "admin" %>
+  <%= submit_tag "not admin" %>
+<% end %>
+</div>
+
+
+<%= link_to '回首頁', root_path %>
+<!-- <table class ="table" id ="admin_shot_table">
+  <th>作品列表: </th>
+    <%# @shots.each do |shot| %>
+  <tr>
+    <td><%#= image_tag(shot.photo.url(:thumb)) %></td>
+    <td><%#= link_to 'destroy', admin_shot_path(shot), :method => :delete, :class=>"btn btn-danger" %></td>
+  </tr>
+    <%# end %>
+</table> -->
+
+</div>

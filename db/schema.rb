@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017123406) do
+ActiveRecord::Schema.define(version: 20151018151603) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -29,12 +29,33 @@ ActiveRecord::Schema.define(version: 20151017123406) do
 
   add_index "comments", ["shot_id"], name: "index_comments_on_shot_id", using: :btree
 
+  create_table "followings", force: :cascade do |t|
+    t.integer  "from_id",    limit: 4
+    t.integer  "to_id",      limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "followings", ["from_id"], name: "index_followings_on_from_id", using: :btree
+  add_index "followings", ["to_id"], name: "index_followings_on_to_id", using: :btree
+
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "shot_id",    limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id", limit: 4
+    t.integer  "followed_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "shots", force: :cascade do |t|
     t.text     "description",        limit: 65535
@@ -45,7 +66,7 @@ ActiveRecord::Schema.define(version: 20151017123406) do
     t.string   "photo_content_type", limit: 255
     t.integer  "photo_file_size",    limit: 4
     t.datetime "photo_updated_at"
-    t.integer  "likes_count",        limit: 4
+    t.integer  "likes_count",        limit: 4,     default: 0
     t.integer  "views_count",        limit: 4,     default: 0
     t.integer  "category_id",        limit: 4
   end
@@ -70,18 +91,18 @@ ActiveRecord::Schema.define(version: 20151017123406) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255,   default: "", null: false
-    t.string   "encrypted_password",     limit: 255,   default: "", null: false
+    t.string   "email",                  limit: 255,   default: "",       null: false
+    t.string   "encrypted_password",     limit: 255,   default: "",       null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,     default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,     default: 0,        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.string   "username",               limit: 255
     t.string   "name",                   limit: 255
     t.string   "location",               limit: 255
@@ -93,6 +114,7 @@ ActiveRecord::Schema.define(version: 20151017123406) do
     t.integer  "head_file_size",         limit: 4
     t.datetime "head_updated_at"
     t.string   "status",                 limit: 255
+    t.string   "role",                   limit: 255,   default: "normal"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
