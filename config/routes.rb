@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  scope :path => '/api/v1/', :defaults => {:format => :json }, :module => "api_v1", :as => 'v1' do
+    post "/login" => "auth#login"
+    post "/logout" => "auth#logout"
+    resources :relationships, only: [:create, :destroy]
+    resources :users, :only => [:index, :show, :edit, :update] do
+      resources :shots do
+        resources :comments, :only => [:create, :destroy]
+        resources :likes, :only => [:create, :destroy]
+      end
+    end
+  
+  end
+
   get 'relationships/create'
 
   get 'relationships/destroy'
@@ -29,6 +42,8 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'tags/:tag', to: 'welcome#index', as: "tag"
+
+  
   # You can have the root of your site routed with "root"
    root 'welcome#index'
 

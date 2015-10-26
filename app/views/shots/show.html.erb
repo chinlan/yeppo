@@ -1,6 +1,6 @@
 <div class="container">
 <div id="info">
-<p><b><span id ="author">By <%=link_to @user.name, user_path(@user) %></span></b>  <span id="created_at"><%= @shot.created_at %></span></p>
+<p><b><span id ="author">By <%=link_to @user.name, user_path(@user) %></span></b>  <span id="created_at"><%= @shot.created_at.strftime("%d %b. %Y") %></span></p>
 </div>
 
 <div id ="shot_wrapper">
@@ -10,7 +10,10 @@
   </div>
 
   <div id="shot_data">
-    <p id="tag">標注： <%=raw tag_links(@shot.tag_list)%></p>
+    <p id="tag">標注： <%=sanitize tag_links(@shot.tag_list)%></p>
+    <% if @shot.tag_user %>
+    <p id="tag_user">人物標注： <%= @shot.tag_category%> <%=link_to @shot.tag_user.name, user_path(@shot.tag_user_id) %></p>
+     <% end %>
     <p id="category">分類： <%= @shot.category.name %></p>
     <p id ="visit">瀏覽數： <%= @shot.views_count %></p>
     <div id ="like">
@@ -19,13 +22,15 @@
       <% end %>
     </div>
     <div id="more">
-      <h2>看更多</h2>
+     <h2>最新作品</h2>
       <ul>
       <% @last_shots = @user.shots.last(3) %>
        <% @last_shots.each do |l| %>
+          <% next if l == @shot %>
           <li><%= link_to image_tag(l.photo.url(:medium)), user_shot_path(@user, l) %></li>
        <% end %>
        </ul>
+       <p> <%= link_to '看更多', user_path(@user) %></p>
     </div> 
   </div>
 </div>

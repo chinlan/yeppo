@@ -57,15 +57,24 @@
 
 //---------------------------------
 
+#info {
+  padding: 20px 5px 0 0;  
+}
+
 #author {
   font-size: 1.2em;
 }
 
 #created_at{
   color:#888888;
+  padding: 0 20px;
 }
 
 #tag {
+  font-size: 0.9em;
+}
+
+#tag_user {
   font-size: 0.9em;
 }
 
@@ -93,9 +102,22 @@ img {
   padding:5px;
 }
 
+#more {
+  margin: 10px 0;
+}
 
+
+#more a {
+  text-decoration: none;
+  color: black;
+}
+
+#more a:hover {
+  color: #919191;
+}
 
 #comment_wrapper {
   padding: 5px, 0;
 }
+
 

@@ -22,24 +22,28 @@
   <div id="nav">
   <ul>
    <li><%= link_to 'Yeppo', root_path %></li>
-   <li><%= link_to '攝影師作品', root_path(:category_id => 3,:order => params[:order]) %></li>
-   <li><%= link_to '模特兒作品', root_path(:category_id => 4,:order => params[:order]) %></li>
+   <li><span class="glyphicon glyphicon-camera"></span>
+       <%= link_to '  攝影師作品', root_path(:category_id => 3,:order => params[:order]) %></li>
+   <li><span class="glyphicon glyphicon-user"></span><%= link_to '  模特兒作品', root_path(:category_id => 4,:order => params[:order]) %></li>
   </ul>
   </div>
  <div id = "session" >
  <% if current_user %>
    Hi, <span class="user-gravatar">
-   <% if @user.head.exists? %>
+   <% if current_user.head.exists? %>
     <p><%= image_tag(current_user.head.url(:thumb)) %></p>
   <% else %>
     <p><%= image_tag current_user.gravatar_url %></p>
   <% end %>
-  </span><%=  current_user.name %>
-
+  </span><%=  current_user.name %> |
+   
+   <span id="my_profile"> <%= link_to '我的作品集', user_path(current_user) %></span> |
+   
    <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
    <%= link_to('修改密碼', edit_registration_path(:user)) %>
    
  <% else %>
+
     <%= link_to('註冊', new_registration_path(:user)) %> |
     <%= link_to('登入', new_session_path(:user)) %>
     

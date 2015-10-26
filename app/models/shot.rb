@@ -6,6 +6,8 @@ class Shot < ActiveRecord::Base
 
   belongs_to :category
 
+  belongs_to :tag_user, :class_name => "User", :foreign_key => "tag_user_id"
+
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
 
@@ -19,7 +21,7 @@ class Shot < ActiveRecord::Base
   validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ },
                                 size: { in: 0..1.megabytes }
 
-  scope :publicing, -> { includes(:user).where( "users.status"  => "公開"  ) }                              
+  scope :publicing, -> { joins(:user).where( "users.status"  => "公開"  ) }                              
   
   def tag_list
     self.tags.map{ |t| t.name }.join(",")
@@ -38,7 +40,8 @@ class Shot < ActiveRecord::Base
   end
 
   def self.tagged_with(name)
-    Tag.find_by_name!(name).shots
+    self.joins(:taggings=>[:tag]).where("tags.name=?",name)
+    # Tag.find_by_name!(name).shots
   end
 
 end

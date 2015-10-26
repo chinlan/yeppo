@@ -1,10 +1,15 @@
 <div class="container">
 <h1 id ="logo">Yeppo</h1>
-<p id="my_profile">
-  <% if current_user %>
-  <%= link_to '我的作品集', user_path(@user) %>
+
+<div id="search">
+  <%= search_form_for @search, :url => root_path do |f| %>
+      <%= f.label :description_or_user_name_or_user_location_or_user_content_cont, "搜尋" %>
+      <%= f.text_field :description_or_user_name_or_user_location_or_user_content_cont %>
+    <%= f.submit "搜尋" %>
   <% end %>
-</p>
+   
+  </div>
+ 
 <div class="clearfix"></div>
 </div>
 
@@ -14,9 +19,19 @@
 
 <div id="masonry-container" class="transitions-enabled "> 
 
-  <% @shots.each do |s| %>
+  <% @shots.order(created_at: :desc).each do |s| %>
    <div class="box panel panel-default"> <%=link_to  image_tag(s.photo.url), user_shot_path(s.user, s) %>
-   <p class="panel-body">By <%=link_to s.user.name, user_path(@user) %></p>
+   <p class="panel-body">
+     <% if s.category_id == 3 %>
+       <span class="glyphicon glyphicon-camera"></span> 
+     <% else %>
+       <span class="glyphicon glyphicon-user"></span>
+     <% end %>
+     By <%=link_to s.user.name, user_path(s.user) %>   |   
+     <span class="glyphicon glyphicon-heart" aria-hidden="true" id ="heart"> 
+     </span><span>  <%= s.likes_count %></span>
+   </p>
+
    </div>
  <% end %>
   

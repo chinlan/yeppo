@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151018151603) do
+ActiveRecord::Schema.define(version: 20151026041807) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 20151018151603) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "rating",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id", limit: 4
     t.integer  "followed_id", limit: 4
@@ -69,6 +75,8 @@ ActiveRecord::Schema.define(version: 20151018151603) do
     t.integer  "likes_count",        limit: 4,     default: 0
     t.integer  "views_count",        limit: 4,     default: 0
     t.integer  "category_id",        limit: 4
+    t.integer  "tag_user_id",        limit: 4
+    t.string   "tag_category",       limit: 255
   end
 
   add_index "shots", ["category_id"], name: "index_shots_on_category_id", using: :btree
@@ -115,8 +123,10 @@ ActiveRecord::Schema.define(version: 20151018151603) do
     t.datetime "head_updated_at"
     t.string   "status",                 limit: 255
     t.string   "role",                   limit: 255,   default: "normal"
+    t.string   "authentication_token",   limit: 255
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["fb_uid"], name: "index_users_on_fb_uid", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

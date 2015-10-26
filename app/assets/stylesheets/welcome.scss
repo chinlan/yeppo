@@ -2,10 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#my_profile {
-  float:right;
-  padding: 5px;
+
+
+#search {
+  float: right;
+  margin: 30px 0;
 }
+
 
 #logo {
   float:left;
@@ -24,8 +27,9 @@
   font-size: 2em;
 }
 
-
-
+#heart {
+  font-size: 0.8em;
+}
 #masonry-container {
   margin: 0 auto;
   width: 90%;

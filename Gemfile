@@ -31,6 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'masonry-rails'
+gem 'jquery-turbolinks'
 
 gem 'devise'
 gem 'omniauth-facebook'
@@ -38,14 +39,18 @@ gem 'gravtastic'
 
 gem "paperclip"
 gem "kaminari"
+gem 'ransack'
+
 
 gem "select2-rails", '~>3.5.9.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'capistrano-rails', :group => :development
+gem 'capistrano-passenger', :group => :development
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'rspec-rails'
 end
 
 group :development do
