@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026041807) do
+ActiveRecord::Schema.define(version: 20151026152336) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20151026041807) do
 
   add_index "comments", ["shot_id"], name: "index_comments_on_shot_id", using: :btree
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id",    limit: 4
+    t.integer  "recipient_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "followings", force: :cascade do |t|
     t.integer  "from_id",    limit: 4
     t.integer  "to_id",      limit: 4
@@ -45,6 +52,18 @@ ActiveRecord::Schema.define(version: 20151026041807) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body",            limit: 65535
+    t.integer  "conversation_id", limit: 4
+    t.integer  "user_id",         limit: 4
+    t.boolean  "read",                          default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "rating",     limit: 4

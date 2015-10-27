@@ -1,0 +1,23 @@
+<div class="container">
+  
+  <% if @over_ten %>
+    <%= link_to '之前對話', '?m=all' %>
+  <% end %>
+
+  <% @messages.each do |m| %>
+    <% if m.body %>
+      <% user = User.find(m.user_id) %>
+      <%= user.name %>
+      <%= m.message_time %>
+      <%= m.body %>
+    <% end %>
+  <% end %>
+
+  <%= form_for [@conversation, @message] do |f| %>
+    <div class="field">
+      <%= f.text_area :body, :class => "form-control" %>
+    </div>
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+      <%= f.submit "回覆", :class => "btn" %>
+  <% end %>
+</div>

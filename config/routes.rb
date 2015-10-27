@@ -31,6 +31,10 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
+  resources :conversations do
+    resources :messages
+  end
+
   namespace :admin do
     resources :shots
     resources :users do
