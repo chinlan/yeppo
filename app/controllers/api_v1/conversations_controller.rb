@@ -1,6 +1,4 @@
-class ConversationsController < ApplicationController
-  # before_action :authenticate_user
-  
+class ApiV1::ConversationsController < ApiController
 
   def index
     @conversations = Conversation.all
@@ -12,15 +10,13 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create!(conversation_params)
     end
-
-    redirect_to conversation_messages_path(:conversation_id => @conversation.id)
+    render :json => { :message => "Success", :id=> :conversation_id}
   end
+
 
   private
 
   def conversation_params
     params.permit(:sender_id, :recipient_id)
   end
-
- 
 end

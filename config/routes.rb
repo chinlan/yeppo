@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   scope :path => '/api/v1/', :defaults => {:format => :json }, :module => "api_v1", :as => 'v1' do
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
+    resources :conversations, only: [:index, :create] do
+      resources :messages, only: [:create] 
+    end
     resources :relationships, only: [:create, :destroy]
     resources :users, :only => [:index, :show, :edit, :update] do
       resources :shots do

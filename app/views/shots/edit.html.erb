@@ -8,8 +8,23 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :tag_user_id, "標注人物" %>
+    <%= f.collection_select(:tag_user_id, User.all, :id, :name, :include_blank => "Please select...") %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tag_category, "標注的人是" %>
+    <%= f.select :tag_category, ['攝影師','模特兒'], :include_blank => "Please select..." %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :category_id %>
+    <P><%= f.collection_select(:category_id, Category.all, :id, :name) %></P>
+  </div>
+
+  <div class="form-group">
     <%= f.label :description, "作品簡介" %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description, :class => "form-control" %>
   </div>
 
   <%= f.submit '送出' %>
@@ -18,3 +33,13 @@
   <%= link_to '取消', user_path(@user) %>
 
   </div>
+
+  <script>
+    $("#shot_tag_list").select2({
+      tags: <%=sanitize Tag.all.map{ |t| t.name }.to_json %>,
+      tokenSeparators: [',', ' ']
+    });
+    // $("#shot_category_id").select2();
+    $("#shot_tag_user_id").select2();
+
+  </script>
