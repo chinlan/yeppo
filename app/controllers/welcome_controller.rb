@@ -1,17 +1,35 @@
 class WelcomeController < ApplicationController
 
   def index 
-    if params[:category_id]
-      @category = Category.find(params[:category_id])
-      @shots = @category.shots.publicing
-    else
-      @shots = Shot.publicing
+    load_shots
+  end
+
+  def photographers
+    load_shots("photographer")
+    
+    render "index"
+  end
+
+  def models
+    load_shots("model")
+
+    render "index"
+  end
+
+  protected
+
+  def load_shots(shot_type=nil)
+
+    @shots = Shot.includes(:user).publicing
+
+    if shot_type == 'photographer'
+      @shots = @shots.only_photographer
+    elsif shot_type == 'model'
+      @shots = @shots.only_model      
     end
 
     if params[:tag]
       @shots = @shots.tagged_with(params[:tag])
-    else
-      @shots = @shots.all
     end
     
     @search = @shots.ransack(params[:q])
@@ -19,6 +37,4 @@ class WelcomeController < ApplicationController
    
   end
 
-  
-       
 end

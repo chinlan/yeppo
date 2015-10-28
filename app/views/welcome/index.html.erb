@@ -1,9 +1,13 @@
+
+<div id ="banner" class="container-fluid">
+  <p>Get your ideal team for e-commerce photograph!</p>
+</div>
 <div class="container">
 <h1 id ="logo">Yeppo</h1>
 
 <div id="search">
   <%= search_form_for @search, :url => root_path do |f| %>
-      <%= f.label :description_or_user_name_or_user_location_or_user_content_cont, "搜尋" %>
+      <span><i class="glyphicon glyphicon-search"></i></span>
       <%= f.text_field :description_or_user_name_or_user_location_or_user_content_cont %>
     <%= f.submit "搜尋" %>
   <% end %>
@@ -13,16 +17,14 @@
 <div class="clearfix"></div>
 </div>
 
-<div id ="banner" class="container-fluid">
-  <p>Get your ideal team for e-commerce photograph!</p>
-</div>
+
 
 <div id="masonry-container" class="transitions-enabled "> 
 
   <% @shots.order(created_at: :desc).each do |s| %>
    <div class="box panel panel-default"> <%=link_to  image_tag(s.photo.url), user_shot_path(s.user, s) %>
    <p class="panel-body">
-     <% if s.category_id == 3 %>
+     <% if s.photographer? %>
        <span class="glyphicon glyphicon-camera"></span> 
      <% else %>
        <span class="glyphicon glyphicon-user"></span>

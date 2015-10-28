@@ -5,7 +5,7 @@ end
 json.data @shots do |s|
   json.photo s.photo
   json.description s.description
-  json.category_id s.category_id
+  json.shot_type s.shot_type
   json.tag_list s.tag_list
   json.tag_user s.tag_user
   json.tag_category s.tag_category

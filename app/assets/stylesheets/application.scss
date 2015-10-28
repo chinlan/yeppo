@@ -25,18 +25,18 @@ input[placeholder] { width: 100% !important; }
 
 #my_profile a{
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 #header {
-  background: #888888;
-
+  background: #FFFF59;
+  padding: 10px 0 0 0;
 }
 
 #session {
   float:right;
-  padding: 5px;
-  color:white;
+  padding: 9px 5px 5px 5px;
+  color:black;
 }
 
 .clearfix {
@@ -54,7 +54,7 @@ input[placeholder] { width: 100% !important; }
 }
 
 #nav li a {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 

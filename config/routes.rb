@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   scope :path => '/api/v1/', :defaults => {:format => :json }, :module => "api_v1", :as => 'v1' do
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
@@ -15,21 +16,18 @@ Rails.application.routes.draw do
   
   end
 
-  get 'relationships/create'
-
-  get 'relationships/destroy'
-
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
-
 
   resources :users, :only => [:show, :edit, :update] do
     resources :shots, :except => [:index] do
-    resources :comments, :only => [:create, :destroy], :controller => "shot_comments"
-    resources :likes, :only => [:create, :destroy]
-   end
-   member do
-    get :following, :followers
-  end
+      resources :comments, :only => [:create, :destroy], :controller => "shot_comments"
+      resources :likes, :only => [:create, :destroy]
+    end
+    
+    member do
+      get :following
+      get :followers
+    end
   end
 
   resources :relationships, only: [:create, :destroy]
@@ -46,13 +44,16 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get "/photographers" => "welcome#photographers"
+  get "/models" => "welcome#models"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'tags/:tag', to: 'welcome#index', as: "tag"
 
-  
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

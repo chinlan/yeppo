@@ -11,13 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026152336) do
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20151028062022) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -35,16 +29,6 @@ ActiveRecord::Schema.define(version: 20151026152336) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  create_table "followings", force: :cascade do |t|
-    t.integer  "from_id",    limit: 4
-    t.integer  "to_id",      limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "followings", ["from_id"], name: "index_followings_on_from_id", using: :btree
-  add_index "followings", ["to_id"], name: "index_followings_on_to_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -64,12 +48,6 @@ ActiveRecord::Schema.define(version: 20151026152336) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer  "rating",     limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id", limit: 4
@@ -93,12 +71,11 @@ ActiveRecord::Schema.define(version: 20151026152336) do
     t.datetime "photo_updated_at"
     t.integer  "likes_count",        limit: 4,     default: 0
     t.integer  "views_count",        limit: 4,     default: 0
-    t.integer  "category_id",        limit: 4
     t.integer  "tag_user_id",        limit: 4
     t.string   "tag_category",       limit: 255
+    t.string   "shot_type",          limit: 255,               null: false
   end
 
-  add_index "shots", ["category_id"], name: "index_shots_on_category_id", using: :btree
   add_index "shots", ["user_id"], name: "index_shots_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|

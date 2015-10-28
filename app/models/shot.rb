@@ -1,10 +1,10 @@
 class Shot < ActiveRecord::Base
 
-  validates_presence_of :photo, :category_id
+  TYPES = ["photographer", "model"]
+
+  validates_presence_of :photo, :shot_type
   belongs_to :user
   has_many :comments, :dependent => :destroy
-
-  belongs_to :category
 
   belongs_to :tag_user, :class_name => "User", :foreign_key => "tag_user_id"
 
@@ -21,8 +21,15 @@ class Shot < ActiveRecord::Base
   validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ },
                                 size: { in: 0..1.megabytes }
 
-  scope :publicing, -> { joins(:user).where( "users.status"  => "公開"  ) }                              
+  scope :only_model, -> { where( :shot_type => "model") }
+  scope :only_photographer, -> { where( :shot_type => "photographer") }
+
+  scope :publicing, -> { joins(:user).where( "users.status"  => "public"  ) }                              
   
+  def photographer?
+    shot_type == "photographer"
+  end
+
   def tag_list
     self.tags.map{ |t| t.name }.join(",")
   end

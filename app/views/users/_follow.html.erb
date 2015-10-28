@@ -1,4 +1,1 @@
-<%= form_for(current_user.relationships.build(followed_id: @user.id),remote: true) do |f| %>
-  <div><%= f.hidden_field :followed_id %></div>
-  <%= f.submit "收藏", class: "btn btn-primary" %>
-<% end %>
+<%= button_to "收藏", relationships_path( :followed_id => @user ), :remote => true, :class => "btn btn-primary" %>

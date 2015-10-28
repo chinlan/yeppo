@@ -10,4 +10,14 @@ class Conversation < ActiveRecord::Base
     where("(conversations.sender_id = ? AND conversations.recipient_id = ? ) OR (conversations.sender_id = ? AND conversations.recipient_id = ? )",
       sender_id, recipient_id, recipient_id, sender_id )    
   end
+
+  def self.get(user1, user2)
+    where("(conversations.sender_id = ? AND conversations.recipient_id = ? ) OR (conversations.sender_id = ? AND conversations.recipient_id = ? )",
+      user1, user2, user2, user1 ).first
+  end
+
+  def self.get_mine(user_id)
+    where("sender_id = ? OR recipient_id = ?", user_id, user_id)
+  end
+
 end

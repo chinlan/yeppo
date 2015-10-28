@@ -14,7 +14,7 @@ json.users @users do |u|
   json.shots u.shots do |s|
     json.photo s.photo
     json.description s.description
-    json.category_id s.category_id
+    json.shot_type s.shot_type
     
     json.comments s.comments do |c|
       json.content c.content

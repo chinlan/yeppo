@@ -17,21 +17,22 @@
 
 #banner {
   text-align:center;
-  background: #FFFF59;
+  background: #2B2B2B;
 }
 
 #banner p {
   line-height: 30px;
-  padding: 5px;
+  padding: 10px;
   margin: 10px;
   font-size: 2em;
+  color: white;
 }
 
 #heart {
   font-size: 0.8em;
 }
 #masonry-container {
-  margin: 0 auto;
+  margin: 5px auto;
   width: 90%;
   .box {
     margin: 10px;

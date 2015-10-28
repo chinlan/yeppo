@@ -12,9 +12,9 @@
   <div id="shot_data">
     <p id="tag">標注： <%=sanitize tag_links(@shot.tag_list)%></p>
     <% if @shot.tag_user %>
-    <p id="tag_user">人物標注： <%= @shot.tag_category%> <%=link_to @shot.tag_user.name, user_path(@shot.tag_user_id) %></p>
+    <p id="tag_user">人物標注： <%= t( @shot.tag_category, :scope => "shot_type" ) %> <%=link_to @shot.tag_user.name, user_path(@shot.tag_user_id) %></p>
      <% end %>
-    <p id="category">分類： <%= @shot.category.name %></p>
+    <p id="category">分類： <%= t(@shot.shot_type, :scope => "shot_type" ) %></p>
     <p id ="visit">瀏覽數： <%= @shot.views_count %></p>
     <div id ="like">
       <% if current_user %>
@@ -48,11 +48,11 @@
       <%= f.submit '送出留言' %>
     <% end %>
 
-    <table class="table" id = "comment_table">
+    <table class="table" id="comment_table">
       <th>留言列表</th>
-      <% @comments.each do |c| %>
-        <%= render :partial => "shot_comments/comment", :locals => { :c => c } %>
-      <% end %>
+
+      <%= render :partial => "shot_comments/comment", :collection => @comments, :as => :c %>
+
     </table>
 
   </div>

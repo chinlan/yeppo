@@ -20,15 +20,14 @@ class ShotsController < ApplicationController
   def show
     @shot = @user.shots.find(params[:id])
 
-    if cookies["visit-shot-#{@shot.id}"]
-    else
+    unless cookies["visit-shot-#{@shot.id}"]
       cookies["visit-shot-#{@shot.id}"] = "Ya"
       @shot.views_count += 1
       @shot.save!
     end
 
     @comment = Comment.new
-    @comments = @shot.comments.all
+    @comments = @shot.comments.includes(:user).all
 
     if current_user
       @like = current_user.likes.find_by(:shot => @shot)
@@ -62,6 +61,6 @@ class ShotsController < ApplicationController
   end
 
   def shot_params
-    params.require(:shot).permit(:description, :photo, :tag_list, :category_id, :tag_user_id, :tag_category)
+    params.require(:shot).permit(:description, :photo, :tag_list, :shot_type, :tag_user_id, :tag_category)
   end
 end

@@ -2,27 +2,77 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@media(min-width: 481px) and (max-width: 1024px) {
-
-
+@media(min-width: 600px) and (max-width: 1024px) {
+  #basic_data {
+  float:left;
+  width: 60%;
+  }
+  #basic_tool {
+  float:right;
+  width: 30%;
+  }
+  #basic {
+  width: 100%;
+  }
 }
 
 @media(min-width: 1025px){
-   
+   #basic_data {
+  float:left;
+  width: 60%;
+  }
+  #basic_tool {
+  float:right;
+  width: 30%;
+  }
+  #basic {
+  width: 80%;
+  }
 }
 
+.profile_content_wrapper {
+  background-color: #2B2B2B;
+}
+
+.upper_container {
+  background-color: white;
+}
+
+
+#title h1 {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+#unpublic h2 {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
 
 #basic {
     width:80%;
     margin:0 auto;
-    text-align:center;
    }
+#basic_tool {
+    text-align: center;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    padding: 10px 0;
+}
 
+#basic_tool .span8 {
+  padding: 5px;
+}
 #basic img {
-  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
 }
 
 #masonry-container {
+ 
   margin: 0 auto;
   width: 90%;
   .box {

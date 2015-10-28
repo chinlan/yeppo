@@ -1,24 +1,12 @@
 class User < ActiveRecord::Base
   
-  before_create :generate_authentication_token
-
-  def self.get_fb_data(access_token)
-    res = RestClient.get "https://graph.facebook.com/v2.4/me",  { :params => { :access_token => access_token } }
-
-    if res.code == 200
-      JSON.parse( res.to_str )
-    else
-      Rails.logger.warn(res.body)
-      nil
-    end
-  end
+  STATUS = ["hide", "public"]
 
   include Gravtastic
   gravtastic
 
-  scope :publicing, -> {where(:status => "公開")}
+  scope :publicing, -> {where(:status => "public")}
   
-
   has_many :comments, :dependent => :destroy
   has_many :shots, :dependent => :destroy
 
@@ -37,12 +25,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
           :omniauthable, :omniauth_providers => [:facebook]
 
-  has_attached_file :head, styles: { medium: '70x70>', thumb: '25x25>' },
+  has_attached_file :head, styles: { medium: '200x200>', thumb: '25x25>' },
                              url: '/system/:class/:attachment/:id_partition/:style/:hash.:extension',
                              path: ':rails_root/public/system/:class/:attachment/:id_partition/:style/:hash.:extension',
                              hash_secret: 'get_from_rake_secret'
   validates_attachment :head, content_type: { content_type: /\Aimage\/.*\Z/ },
                                 size: { in: 0..1.megabytes }
+
+  before_create :generate_authentication_token
+
+  def public?
+    self.status == "public"
+  end
 
   # def self.from_omniauth(auth)
   #    where( fb_uid: auth.uid).first_or_create do |user|
@@ -83,6 +77,17 @@ class User < ActiveRecord::Base
    user.save!
    return user
  end
+
+  def self.get_fb_data(access_token)
+    res = RestClient.get "https://graph.facebook.com/v2.4/me",  { :params => { :access_token => access_token } }
+
+    if res.code == 200
+      JSON.parse( res.to_str )
+    else
+      Rails.logger.warn(res.body)
+      nil
+    end
+  end
 
   def admin?
     self.role == "admin"

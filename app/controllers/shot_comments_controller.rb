@@ -8,30 +8,24 @@ class ShotCommentsController < ApplicationController
     if @comment.save
        
       respond_to do |format|
-      format.html{redirect_to user_shot_path(@user,@shot)}
-
-      format.js
+        format.html{ redirect_to user_shot_path(@user, @shot) }
+        format.js
       end
     else
       redirect_to user_shot_path(@user,@shot)
     end
-    
-      
-    
-    
   end
 
   def destroy
-    @comment = @shot.comments.find(params[:id])
+    # TODO: allow shot owner can delete comment too
+    @comment = current_user.comments.find(params[:id])
    
     @comment.destroy
     
-
     respond_to do |format|
       format.html {redirect_to user_shot_path(@user,@shot)}
       format.js
     end
-    
   end
 
   private

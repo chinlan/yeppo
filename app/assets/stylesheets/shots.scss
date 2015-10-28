@@ -6,16 +6,19 @@
    #shot_self {
     width: 80%;
     margin: 0 auto;
+    text-align: center;
    }
 
    #shot_data {
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
+    text-align: center;
    }
 
    #info {
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
+    text-align: center;
    }
 
    #comment_wrapper {
@@ -94,6 +97,8 @@
   width: 30%;
 }
 
+
+
 img {
   padding: 5px;
 }
@@ -120,4 +125,7 @@ img {
   padding: 5px, 0;
 }
 
+#submit btn {
+  display: inline;
+}
 

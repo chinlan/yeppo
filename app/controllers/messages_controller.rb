@@ -1,21 +1,23 @@
 class MessagesController < ApplicationController
+
   before_action :find_conversation
 
   def index
-    @messages = @conversation.messages
-     if @messages.length > 10
-        @over_ten = true
-        @messages = @messages[-10..-1]
-     end
-     if params[:m]
-        @over_ten = false
-        @messages = @conversation.messages.all
-     end
-     if @messages.last
-        if @messages.last.user_id != current_user.id
-           @messages.last.read = true
-        end
-     end
+    @messages = @conversation.messages.includes(:user).order("id DESC")
+
+    if params[:m]
+      @over_ten = false
+    else
+      @messages = @messages.limit(10)
+      @over_ten = @conversation.messages.count > 10
+    end
+
+    if @messages.last
+       if @messages.last.user != current_user
+          @messages.last.read = true
+       end
+    end
+
      @message = @conversation.messages.new
    end
 
@@ -25,6 +27,7 @@ class MessagesController < ApplicationController
 
    def create
     @message = @conversation.messages.new(message_params)
+
     if @message.save
       redirect_to conversation_messages_path(@conversation)
     end

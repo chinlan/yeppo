@@ -4,14 +4,15 @@
     <%= link_to '之前對話', '?m=all' %>
   <% end %>
 
+<ul>
   <% @messages.each do |m| %>
-    <% if m.body %>
-      <% user = User.find(m.user_id) %>
-      <%= user.name %>
+  <li>
+      <%= m.user.name %>
       <%= m.message_time %>
       <%= m.body %>
-    <% end %>
+  </li>
   <% end %>
+</ul>
 
   <%= form_for [@conversation, @message] do |f| %>
     <div class="field">
