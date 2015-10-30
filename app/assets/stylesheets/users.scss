@@ -4,11 +4,11 @@
 
 @media(min-width: 600px) and (max-width: 1024px) {
   #basic_data {
-  float:left;
+  float:right;
   width: 60%;
   }
   #basic_tool {
-  float:right;
+  float:left;
   width: 30%;
   }
   #basic {
@@ -18,17 +18,21 @@
 
 @media(min-width: 1025px){
    #basic_data {
-  float:left;
+  float:right;
   width: 60%;
   }
   #basic_tool {
-  float:right;
+  float:left;
   width: 30%;
   }
   #basic {
   width: 80%;
+  padding: 20px 0;
   }
 }
+
+//-------------------------------------------
+input[placeholder] { width: 100% !important; }
 
 .profile_content_wrapper {
   background-color: #2B2B2B;
@@ -38,8 +42,12 @@
   background-color: white;
 }
 
+.masonry_container {
+  background-color: #F5F5F5;
+  padding: 20px 20px 0 0;
+}
 
-#title h1 {
+#title h2 {
   width: 80%;
   margin: 0 auto;
   padding: 10px 0;
@@ -55,11 +63,29 @@
     width:80%;
     margin:0 auto;
    }
+
+#basic_data p {
+    font-size: 1.05em;
+}
 #basic_tool {
     text-align: center;
-    border-top: 3px solid;
     border-bottom: 3px solid;
     padding: 10px 0;
+}
+
+#basic_tool a {
+  text-decoration: none;
+  color:#474747;
+}
+
+#basic_tool a:hover {
+  color: #919191;
+  text-decoration: none;
+}
+#title {
+  border-bottom: 3px solid;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #basic_tool .span8 {
@@ -72,7 +98,7 @@
 }
 
 #masonry-container {
- 
+  
   margin: 0 auto;
   width: 90%;
   .box {
@@ -99,4 +125,81 @@
        }
 
     }
+}
+
+#edit_container {
+  background-color: #2B2B2B;
+  padding: 0 0 20px 0;
+  color: white;
+}
+
+
+#edit_basic li {
+  display: inline;
+  padding: 10px 0;
+  font-size: 1.5em;
+}
+
+#edit_basic ul {
+  padding:20px 0;
+  margin:0;
+}
+
+#edit_basic a {
+  text-decoration: none;
+  color: #FFFF59;
+  line-height: 20px;
+  padding: 10px 20px;
+}
+
+#edit_basic a:hover {
+  color:#8C8C8C;
+}
+
+
+#edit_data h2 {
+  color: #BABABA;
+}
+
+#edit_data #user_name {
+  border: 3px solid #FFFF59;
+}
+
+#edit_data #user_location {
+  border: 3px solid #FFFF59;
+}
+
+#edit_data textarea {
+   border: 3px solid #FFFF59;
+}
+
+.update_data {
+  color: black;
+  background-color: #FFFF59;
+  border: 2px solid #FFFF59;
+  border-radius: 5px;
+}
+//-------------------------------
+
+.follow img{
+  border-radius: 100%;
+  width:80px;
+  height: 80px;
+}
+
+.follow .follow_row {
+  height: 85%;
+}
+
+.follow_row span {
+  margin: 0 20px 0 0;
+}
+
+.follow_row a {
+  text-decoration: none;
+  color: #2B2B2B;
+}
+
+.follow_row a:hover {
+  color: #919191;
 }

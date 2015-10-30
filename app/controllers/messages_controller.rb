@@ -12,13 +12,15 @@ class MessagesController < ApplicationController
       @over_ten = @conversation.messages.count > 10
     end
 
-    if @messages.last
-       if @messages.last.user != current_user
-          @messages.last.read = true
-       end
+    last_to_me_message = @conversation.find_last_to_me_message(current_user)
+    if last_to_me_message && !last_to_me_message.read
+        last_to_me_message.read = true
+        last_to_me_message.save!
     end
 
      @message = @conversation.messages.new
+
+     # respond_to :html, :js
    end
 
    def new 
@@ -29,6 +31,11 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new(message_params)
 
     if @message.save
+      respond_to do |format|
+        format.html{ redirect_to conversation_messages_path(@conversation) }
+        format.js
+      end
+    else
       redirect_to conversation_messages_path(@conversation)
     end
    end

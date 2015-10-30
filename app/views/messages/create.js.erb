@@ -1,0 +1,3 @@
+$(".message_body").val("");
+
+$("#message_table tbody").prepend("<%=j render :partial => "message", :locals => { :m => @message } %>");

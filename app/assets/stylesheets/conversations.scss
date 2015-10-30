@@ -1,3 +1,80 @@
 // Place all the styles related to the conversations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.conversation .wrapper {
+  width:80%;
+}
+.conversation ul {
+  list-style-type: none;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.conversaion li {
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.conversation li a {
+  text-decoration: none;
+  color: #2B2B2B;
+  font-size: 1.2em;
+}
+
+.conversation li a:hover {
+  color: #919191;
+  text-decoration: none;
+}
+
+.conversation p {
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.conversation .red {
+  color: red;
+}
+
+//-----------------------
+.message {
+  height: 100%;
+}
+
+
+.message a {
+  text-decoration: none;
+  color: #2B2B2B;
+}
+
+.message a:hover{
+  color: #636363;
+  text-decoration: none;
+}
+
+.message .btn {
+  margin: 10px 10px 0 0;
+  background: #8C8C8C;
+}
+.message .reply {
+  background: #FFFF59;
+}
+
+.message table {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.message .wrapper {
+  height: 100%;
+}
+
+#message_table {
+  padding-bottom: 0px;
+  overflow: auto;
+}
+
+.gray {
+  font-size: 0.9em;
+  color: #919191;
+}

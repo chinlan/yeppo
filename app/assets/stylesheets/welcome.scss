@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+input[placeholder] { width: 65% !important; }
 
 #search {
   float: right;
@@ -26,6 +26,10 @@
   margin: 10px;
   font-size: 2em;
   color: white;
+}
+
+#banner span {
+  color: #FFFF59;
 }
 
 #heart {

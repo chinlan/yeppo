@@ -3,7 +3,21 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @conversations = Conversation.get_mine(current_user.id)
+    @conversations = Conversation.get_mine(current_user.id)    
+  end
+
+  def show
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.includes(:user).order("id DESC").limit(10)
+    @message = @conversation.messages.new
+       
+    last_to_me_message = @conversation.find_last_to_me_message(current_user)
+    if last_to_me_message && !last_to_me_message.read
+        last_to_me_message.read = true
+        last_to_me_message.save!
+    end
+
+    respond_to :js
   end
 
   def create
@@ -14,6 +28,11 @@ class ConversationsController < ApplicationController
     end
 
     redirect_to conversation_messages_path(:conversation_id => @conversation.id)
+  end
+
+  def more_messages
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.offset(10)
   end
 
   private

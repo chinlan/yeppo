@@ -1,7 +1,9 @@
-<div class ="container">
+<div class ="container conversation">
 
   <h2>私訊郵箱</h2>
-
+  <div class="wrapper">
+  <div class="row">
+  <div class="col-sm-3">
   <% @conversations.each do |c| %>
     <% if c.sender_id == current_user.id || c.recipient_id == current_user.id %>
       <% if c.sender_id == current_user.id %>
@@ -9,9 +11,27 @@
       <% else %>
         <% recipient = User.find(c.sender_id) %>
       <% end %>
-      <%= link_to recipient.name, conversation_messages_path(c) %>
+      <ul>
+        <li> <i class="glyphicon glyphicon-comment"></i>
+          <span>  <%= link_to recipient.name, conversation_path(c), :remote => true %></span>
+          <% if (m = c.find_last_to_me_message(current_user)) && (!m.read) %>
+           <i class="glyphicon glyphicon-exclamation-sign red"></i>
+          <% end %>
+        </li>
+      </ul>
     <% end %>
   <% end %>
+  </div>
 
-
+  <div class="col-sm-9">
+     <div id="message_panel">
+      <% if params[:conversation_id] %>
+        <%= render :partial => "/messages/panel",:locals => {  :conversation => @conversation, :messages => @messages, :message => @message } %>
+      <% else %>
+        <p>點擊人名查看訊息</p>
+      <% end %>
+     </div>
+  </div>
+  </div>
+  </div>
 </div>

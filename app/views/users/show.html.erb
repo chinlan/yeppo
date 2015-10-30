@@ -1,13 +1,21 @@
 <div class="profile_content_wrapper">
-
+<div class="upper_container">
 <div class="container profile_container">
-  <div class="upper_container">
-  <div id="title">
-  <h1><%= @user.name %>作品集</h1>
-  </div>
-  <% if @user.public? || @user == current_user %>
+   <div id ="basic">
+    <div id="basic_tool">
+    <div id="title">
+      <h2><%= @user.name %>作品集</h2>
+    </div>
+<% if @user.public? || @user == current_user %>
 
-  <div id ="basic">
+  <p><b>作品數： </b> <%= @user.shots.count %></p>
+  <p><%= link_to '收藏我的人', followers_user_path(@user) %></p>
+  <p><%= link_to '我收藏的人', following_user_path(@user) %></p>
+  <% if current_user != @user %>
+    <div class="span8"><%= render 'follow_form' if current_user %></div>
+    <div><%= link_to '私訊我', conversations_path(sender_id: current_user.id, recipient_id: @user.id ), :method => :post, :class => "btn btn-primary" %></div>
+  <% end %>
+    </div>
     <div id="basic_data">
   <% if @user.head.exists? %>
     <p><%= image_tag(@user.head.url(:medium)) %></p>
@@ -19,18 +27,9 @@
   <p>所在地： <%= @user.location %></p>
   <p>服務簡介： <%= simple_format @user.content %></p>
     </div>
-    <div id="basic_tool">
-  <p><b>作品數： </b> <%= @user.shots.count %></p>
-  <p><%= link_to '收藏我的人', followers_user_path(@user) %></p>
-  <p><%= link_to '我收藏的人', following_user_path(@user) %></p>
-  <% if current_user != @user %>
-    <div class="span8"><%= render 'follow_form' if current_user %></div>
-    <div><%= link_to '私訊我', conversations_path(sender_id: current_user.id, recipient_id: @user.id ), :method => :post, :class => "btn btn-primary" %></div>
-  <% end %>
-    </div>
     <div class="clearfix"></div>
   </div>
- 
+  </div> 
     <div class="masonry_container">
      <div id="masonry-container" class="transitions-enabled"> 
      <% @user.shots.each do |s| %>
@@ -51,18 +50,21 @@
   <div id="unpublic"><h2>尚未公開</h2></div>
   <% end %>  
   </div>
-  </div> 
+ 
   
     </div>
  
      <% if @user == current_user %>
- <div class="container" id ="edit_basic">
-  
-  <p><%= link_to '上傳新作品', new_user_shot_path(@user) %></p>
-  <p><%= link_to '私訊郵箱', conversations_path%></p>
-  
+     <div id="edit_container">
+ 
+  <div class="container" id ="edit_basic">
+  <ul>
+  <li>編輯基本資料</li>
+  <li><%= link_to '上傳新作品', new_user_shot_path(@user) %></li>
+  <li><%= link_to '私訊郵箱', conversations_path %></li>
+  </ul>
   <div id ="edit_data">
-  <h2>編輯基本資料</h2>
+  
   <%= form_for @user, :url => user_path(@user) do |f| %>
     <div class="form-group">
       <%= f.label :name, '姓名/工作室名稱' %>
@@ -94,8 +96,9 @@
       <%= f.select :status, User::STATUS.map{ |s| [t(s, :scope => "user_status"), s] } %>
     </div>
 
-    <%= f.submit '更新基本資料' %>
+    <%= f.submit '更新基本資料', :class=> "update_data" %>
   <% end %>
 <% end %>
+</div>
 </div>
 </div>

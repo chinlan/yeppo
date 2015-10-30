@@ -59,7 +59,7 @@
 }
 
 //---------------------------------
-
+input[placeholder] { width: 100% !important; }
 #info {
   padding: 20px 5px 0 0;  
 }
@@ -97,8 +97,16 @@
   width: 30%;
 }
 
+#shot_data {
+  border-top: 3px solid black;
+  text-align: center;
+  padding: 15px 0 15px 0;
+}
 
-
+#more {
+  border-top: 3px solid #919191;
+  border-bottom: 3px solid black;
+}
 img {
   padding: 5px;
 }
@@ -119,13 +127,47 @@ img {
 
 #more a:hover {
   color: #919191;
+  text-decoration: none;
 }
 
 #comment_wrapper {
   padding: 5px, 0;
 }
 
+.comment_submit {
+  background: #FFFF59;
+}
+
 #submit btn {
   display: inline;
 }
+
+//-----------shots new & edit-----------
+
+.forms_container {
+  background: #2B2B2B;
+  color: white;
+  height: 85%;
+}
+ 
+
+.forms_container h2 {
+  color: #8C8C8C;
+  margin-bottom: 20px;
+}
+.forms_container textarea {
+  border: 3px solid #FFFF59;
+}
+.forms_container .btn {
+  border: 3px solid #FFFF59;
+  background: #FFFF59;
+  color: black;
+  margin-right: 10px;
+}
+.forms_container .cancel {
+  background: #8C8C8C;
+  color:black;
+  border: 3px solid #8C8C8C;
+}
+
 

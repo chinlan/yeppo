@@ -20,4 +20,8 @@ class Conversation < ActiveRecord::Base
     where("sender_id = ? OR recipient_id = ?", user_id, user_id)
   end
 
+  def find_last_to_me_message(u)
+    self.messages.where.not( :user_id=> u.id ).order("id DESC").first
+  end
+
 end

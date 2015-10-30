@@ -16,6 +16,16 @@ class WelcomeController < ApplicationController
     render "index"
   end
 
+  def contact
+    @contact = Contact.new(contact_params)
+     if @contact.save
+        ContactMailer.notify_comment(contact_params).deliver_later!
+        redirect_to root_path
+     else
+        flash[:alert] = "Fail!"
+     end
+  end
+
   protected
 
   def load_shots(shot_type=nil)
@@ -35,6 +45,10 @@ class WelcomeController < ApplicationController
     @search = @shots.ransack(params[:q])
     @shots = @search.result(distinct: true)
    
+  end
+
+  def contact_params
+    params.require(:contact).permit(:name,:body,:email)
   end
 
 end

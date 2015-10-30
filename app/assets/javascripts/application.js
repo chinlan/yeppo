@@ -19,3 +19,18 @@
 //= require bootstrap-sprockets
 //= require select2
 
+$(document).ready(function(e){
+  $('#contact_button').click(function(e){
+  e.preventDefault();
+  $('#footer').css({"height": "300px"});
+  $('#contact_form').show();
+  $('#contact_button').hide();
+});
+
+})
+
+
+
+
+
+

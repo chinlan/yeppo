@@ -1,3 +1,4 @@
+<div class="forms_container">
 <div class="container">
 <h2>修改作品資料</h2>
 <%= form_for @shot, :url => user_shot_path(@user, @shot), :method => :patch do |f| %>
@@ -18,7 +19,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :shot_type %>
+    <%= f.label :shot_type, "作品類型" %>
     <p>
       <%= f.radio_button :shot_type, "photographer" %> 攝影師 
       <%= f.radio_button :shot_type, "model" %> 模特兒
@@ -31,12 +32,12 @@
   </div>
   
   <div id="submit">
-  <%= f.submit '送出', :class=> "btn btn-primary" %>
-  <%= link_to '取消', user_path(@user), :class => "btn btn-default" %>
+  <%= f.submit '送出', :class=> "btn" %>
+  <%= link_to '取消', user_path(@user), :class => "cancel btn" %>
   <% end %>
   </div>
   </div>
-
+  </div>
   <script>
     $("#shot_tag_list").select2({
       tags: <%=sanitize Tag.all.map{ |t| t.name }.to_json %>,

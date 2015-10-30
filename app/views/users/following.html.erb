@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container follow page-wrap">
 
 <% provide(:title, @title) %>
-<div class="row">
+<div class="row follow_row">
   <aside class="span4">
     <section>
       <%= image_tag(@user.head.url(:medium)) %>
       <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
+      <span><%= link_to "回到作品集", @user %></span>
       <span><b>作品數： </b> <%= @user.shots.count %></span>
     </section>
   <!--   <section>
@@ -36,5 +36,6 @@
       
     <% end %>
     </table>
+</div>
 </div>
 </div>

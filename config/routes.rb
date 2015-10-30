@@ -34,6 +34,9 @@ Rails.application.routes.draw do
 
   resources :conversations do
     resources :messages
+    member do 
+      get :more_messages
+    end
   end
 
   namespace :admin do
@@ -47,6 +50,7 @@ Rails.application.routes.draw do
 
   get "/photographers" => "welcome#photographers"
   get "/models" => "welcome#models"
+  post "/contact" => "welcome#contact"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

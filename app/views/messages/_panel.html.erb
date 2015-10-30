@@ -1,0 +1,22 @@
+<div class="message"> 
+<%= form_for [@conversation, @message], :remote => true do |f| %>
+    <div class="field">
+      <%= f.text_area :body, :class => "form-control message_body" %>
+    </div>
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+      <%= f.submit "回覆", :class => "btn reply" %>
+  <% end %>
+<div class="table-responsive"> 
+  <table class="table table-striped" id ="message_table">
+    <% @messages.each do |m| %>
+      <%= render :partial => "messages/message", :as => :m, :locals => { :m => m }  %>
+    <% end %>
+  </table>
+</div>
+   
+  <% unless @messages.size < 10 %> 
+    <%= link_to '之前對話', more_messages_conversation_path(@conversation), :remote => true, :id => "more_messages" %>
+  <% end %>
+
+  
+</div>

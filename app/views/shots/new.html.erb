@@ -1,6 +1,8 @@
+
+<div class="forms_container">
 <div class="container">
 <h2>上傳最新作品</h2>
-<%= form_for @shot, :url => user_shots_path(@user) do |f| %>
+<%= form_for @shot, :url => user_shots_path(@user), :class=>"form" do |f| %>
   
   <div class="form-group">
     <%= f.label :photo, "上傳照片" %>
@@ -23,7 +25,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :shot_type %>
+    <%= f.label :shot_type, "作品類型" %>
     <p>
       <%= f.radio_button :shot_type, "photographer" %> 攝影師作品
       <%= f.radio_button :shot_type, "model" %> 模特兒作品
@@ -36,12 +38,11 @@
     <%= f.text_area :description, :class => "form-control" %>
   </div>
 
-  <%= f.submit '送出' %>
+  <%= f.submit '送出', :class=> "btn" %>
+  <%= link_to '取消', user_path(@user), :class => "cancel btn" %>
   <% end %>
 
-  <%= link_to '取消', user_path(@user) %>
-
-  </div>
+  
 
   <script>
     $("#shot_tag_list").select2({
@@ -52,3 +53,7 @@
     $("#shot_tag_user_id").select2();
 
   </script>
+  <div class="push"></div>
+  </div>
+
+  </div>

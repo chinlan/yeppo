@@ -1,0 +1,7 @@
+<% @messages.each do |m| %>
+<tr>
+     <td> <%= m.user.name %></td>
+     <td><%= m.body %></td>
+     <td class="gray"><%= m.message_time %></td>  
+  </tr>
+<% end %>
