@@ -35,8 +35,11 @@
      <span class="glyphicon glyphicon-heart" aria-hidden="true" id ="heart"> 
      </span><span>  <%= s.likes_count %></span>
    </p>
-
+   
    </div>
  <% end %>
 </div>
+<div class="container" id ="pagenate">
+ <%= paginate @shots %>
+ </div>
 </div>

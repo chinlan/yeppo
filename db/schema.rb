@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030071113) do
+ActiveRecord::Schema.define(version: 20151030113330) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -115,7 +115,6 @@ ActiveRecord::Schema.define(version: 20151030071113) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
-    t.string   "username",               limit: 255
     t.string   "name",                   limit: 255
     t.string   "location",               limit: 255
     t.text     "content",                limit: 65535
@@ -128,11 +127,13 @@ ActiveRecord::Schema.define(version: 20151030071113) do
     t.string   "status",                 limit: 255
     t.string   "role",                   limit: 255,   default: "normal"
     t.string   "authentication_token",   limit: 255
+    t.string   "friendly_id",            limit: 255
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["fb_uid"], name: "index_users_on_fb_uid", using: :btree
+  add_index "users", ["friendly_id"], name: "index_users_on_friendly_id", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

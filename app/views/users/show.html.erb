@@ -23,7 +23,6 @@
     <p><%= image_tag current_user.gravatar_url %></p>
   <% end %>
   <p>姓名/工作室名稱： <%= @user.name %></p>
-  <!-- <p>暱稱： <%= @user.username %></p> -->
   <p>所在地： <%= @user.location %></p>
   <p>服務簡介： <%= simple_format @user.content %></p>
     </div>
@@ -32,7 +31,7 @@
   </div> 
     <div class="masonry_container">
      <div id="masonry-container" class="transitions-enabled"> 
-     <% @user.shots.each do |s| %>
+     <% @shots.each do |s| %>
                 <div class="box panel panel-default">
                 <%=link_to  image_tag(s.photo.url(:medium)), user_shot_path(@user, s) %>
                  <% if @user == current_user || current_user.admin? %>
@@ -45,6 +44,9 @@
      <% end %> 
      </div>
      <div class="clearfix"></div>
+     <div class="container" id="profile_paginate">
+     <%= paginate @shots %>
+     </div>
     </div>
   <% else %>
   <div id="unpublic"><h2>尚未公開</h2></div>
@@ -71,10 +73,10 @@
       <%= f.text_field :name, :class =>"form-control" %>
     </div>
     
-   <!--  <div class="form-group">
-      <%#= f.label :username, '暱稱（作品集短網址名稱）' %>
-      <%#= f.text_field :username, :class=> "form-control" %> 
-    </div> -->
+    <!-- <div class="form-group">
+      <%#= f.label :friendly_id, '作品集短網址名稱(限英數字)' %>
+      <%#= f.text_field :friendly_id, :class=> "form-control" %> 
+    </div>  -->
 
     <div class="form-group">
       <%= f.label :location, '所在地' %>
@@ -101,4 +103,5 @@
 <% end %>
 </div>
 </div>
+
 </div>

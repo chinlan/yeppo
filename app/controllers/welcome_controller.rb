@@ -21,6 +21,7 @@ class WelcomeController < ApplicationController
      if @contact.save
         ContactMailer.notify_comment(contact_params).deliver_later!
         redirect_to root_path
+        flash[:alert] = "Thank you for contacting!"
      else
         flash[:alert] = "Fail!"
      end
@@ -30,7 +31,7 @@ class WelcomeController < ApplicationController
 
   def load_shots(shot_type=nil)
 
-    @shots = Shot.includes(:user).publicing
+    @shots = Shot.includes(:user).publicing.page(params[:page]).per(20)
 
     if shot_type == 'photographer'
       @shots = @shots.only_photographer

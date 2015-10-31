@@ -31,6 +31,11 @@ class User < ActiveRecord::Base
                              hash_secret: 'get_from_rake_secret'
   validates_attachment :head, content_type: { content_type: /\Aimage\/.*\Z/ },
                                 size: { in: 0..1.megabytes }
+  
+  # validates_presence_of :friendly_id
+  # validates_uniqueness_of :friendly_id
+  # validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/,
+  #                     :message => "請用英數字"
 
   before_create :generate_authentication_token
 
@@ -72,6 +77,8 @@ class User < ActiveRecord::Base
    user.fb_uid = auth.uid
    user.fb_token = auth.credentials.token
    user.email = auth.info.email
+   user.name = auth.info.name 
+   user.head =　auth.info.image
    user.password = Devise.friendly_token[0,20]
    #user.fb_raw_data = auth
    user.save!
@@ -109,5 +116,7 @@ class User < ActiveRecord::Base
    self.authentication_token = Devise.friendly_token
  end
   
-  
+   # def to_param
+   #  self.friendly_id
+   # end
 end

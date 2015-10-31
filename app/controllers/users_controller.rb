@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @shots = Shot.all
+    @shots = @user.shots.page(params[:page]).per(6)
   end
 
   def edit
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username,:name,:location,:content, :head, :status)
+    params.require(:user).permit(:friendly_id,:name,:location,:content, :head, :status)
   end
 
 
