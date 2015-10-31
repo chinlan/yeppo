@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require masonry/jquery.masonry
 //= require jquery.turbolinks
-//= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
 //= require select2
@@ -22,7 +21,7 @@
 $(document).ready(function(e){
   $('#contact_button').click(function(e){
   e.preventDefault();
-  $('#footer').css({"height": "300px"});
+  $('#footer').css({"height": "350px"});
   $('#contact_form').show();
   $('#contact_button').hide();
 });

@@ -115,6 +115,7 @@ body {
   text-align: center;
   padding: 20px;
   width: 30%;
+  height: 300px;
   margin: 0 auto;
   display:none;
 }
@@ -128,7 +129,7 @@ body {
   color: black;
 }
 
-.btn{
+#footer .btn{
  
   margin: 20px;
   background: #FFFF59;
@@ -191,6 +192,10 @@ body {
 
  }
 }
-//--------------------------------------
+//---------------flash-----------------------
 
+.alert {
+  margin: 0;
+  text-align: center;
+}
 

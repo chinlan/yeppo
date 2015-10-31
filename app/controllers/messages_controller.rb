@@ -2,26 +2,7 @@ class MessagesController < ApplicationController
 
   before_action :find_conversation, :authenticate_user!
 
-  def index
-    @messages = @conversation.messages.includes(:user).order("id DESC")
-
-    if params[:m]
-      @over_ten = false
-    else
-      @messages = @messages.limit(10)
-      @over_ten = @conversation.messages.count > 10
-    end
-
-    last_to_me_message = @conversation.find_last_to_me_message(current_user)
-    if last_to_me_message && !last_to_me_message.read
-        last_to_me_message.read = true
-        last_to_me_message.save!
-    end
-
-     @message = @conversation.messages.new
-
-     # respond_to :html, :js
-   end
+  
 
    def new 
     @message = @conversation.messages.new
@@ -32,11 +13,11 @@ class MessagesController < ApplicationController
 
     if @message.save
       respond_to do |format|
-        format.html{ redirect_to conversation_messages_path(@conversation) }
+        format.html{ redirect_to conversations_path }
         format.js
       end
     else
-      redirect_to conversation_messages_path(@conversation)
+      redirect_to conversations_path
     end
    end
 

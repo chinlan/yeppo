@@ -8,9 +8,11 @@
   <% end %>
 <div class="table-responsive"> 
   <table class="table table-striped" id ="message_table">
+  
     <% @messages.each do |m| %>
       <%= render :partial => "messages/message", :as => :m, :locals => { :m => m }  %>
     <% end %>
+
   </table>
 </div>
    

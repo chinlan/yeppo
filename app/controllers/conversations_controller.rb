@@ -3,7 +3,13 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @conversations = Conversation.get_mine(current_user.id)    
+    @conversations = Conversation.get_mine(current_user.id)
+    if params[:conversation_id]
+      @conversation = Conversation.find(params[:conversation_id])
+       @messages = @conversation.messages.includes(:user).order("id DESC").limit(10)
+
+      @message = @conversation.messages.new
+    end    
   end
 
   def show
@@ -27,7 +33,7 @@ class ConversationsController < ApplicationController
       @conversation = Conversation.create!(conversation_params)
     end
 
-    redirect_to conversation_messages_path(:conversation_id => @conversation.id)
+    redirect_to conversations_path(:conversation_id => @conversation.id)
   end
 
   def more_messages
