@@ -14,7 +14,7 @@ class Shot < ActiveRecord::Base
   has_many :likes, :dependent => :destroy
   has_many :like_users, :through => :likes, :source => :user
 
-  has_attached_file :photo, styles: { medium: '300x300>', thumb: '100x100>' },
+  has_attached_file :photo, styles: { large: '1200x1200', medium: '300x300>', thumb: '100x100>' },
                              url: '/system/:class/:attachment/:id_partition/:style/:hash.:extension',
                              path: ':rails_root/public/system/:class/:attachment/:id_partition/:style/:hash.:extension',
                              hash_secret: 'get_from_rake_secret'

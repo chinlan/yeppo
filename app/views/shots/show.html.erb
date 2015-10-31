@@ -5,7 +5,7 @@
 
 <div id ="shot_wrapper">
   <div id="shot_self">
-    <p><%= image_tag(@shot.photo.url) %></p>
+    <p><%= image_tag(@shot.photo.url(:large)) %></p>
     <p id="description"><%= @shot.description %></p>
   </div>
 

@@ -24,7 +24,7 @@
 <div id="masonry-container" class="transitions-enabled"> 
 
   <% @shots.order(created_at: :desc).each do |s| %>
-   <div class="box panel panel-default"> <%=link_to  image_tag(s.photo.url), user_shot_path(s.user, s) %>
+   <div class="box panel panel-default"> <%=link_to  image_tag(s.photo.url(:medium)), user_shot_path(s.user, s) %>
    <p class="panel-body">
      <% if s.photographer? %>
        <span class="glyphicon glyphicon-camera"></span> 
