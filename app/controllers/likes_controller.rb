@@ -1,6 +1,6 @@
 class LikesController < ApplicationController
-
-  before_action :set_user, :set_shot
+  
+  before_action :set_user, :set_shot, :authenticate_user!
 
   def create
 

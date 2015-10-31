@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  before_action :facebook_login, :only => [:show]
 
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])
@@ -40,6 +41,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:friendly_id,:name,:location,:content, :head, :status)
   end
-
-
+  
+  def facebook_login
+    unless current_user
+      flash[:alert] = "請登入以繼續"
+      redirect_to :back
+    end
+  end
 end

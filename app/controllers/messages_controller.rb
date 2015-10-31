@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  before_action :find_conversation
+  before_action :find_conversation, :authenticate_user!
 
   def index
     @messages = @conversation.messages.includes(:user).order("id DESC")

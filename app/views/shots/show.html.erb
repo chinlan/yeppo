@@ -37,7 +37,7 @@
 <div class="clearfix"></div>
 
   <div id="comment_wrapper">
-    <h2>留言</h2>
+   <% if current_user %>
     <%= form_for @comment, :url => user_shot_comments_path(@user, @shot) ,:remote => true do |f| %>
   
     <div class="form-group">
@@ -48,13 +48,13 @@
       <%= f.submit '送出留言', :class=>"btn comment_submit" %>
     <% end %>
 
-    <table class="table" id="comment_table">
+    <table class=" table table-striped" id="comment_table">
       <th>留言列表</th>
 
       <%= render :partial => "shot_comments/comment", :collection => @comments, :as => :c %>
 
     </table>
-
+   <% end %>
   </div>
 </div>
 

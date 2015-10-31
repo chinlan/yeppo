@@ -1,6 +1,6 @@
 class ShotCommentsController < ApplicationController
 
-  before_action :set_user,:set_shot
+  before_action :set_user,:set_shot,:authenticate_user!
 
   def create
     @comment = @shot.comments.new(comment_params)
@@ -41,5 +41,7 @@ class ShotCommentsController < ApplicationController
   def set_shot
     @shot = @user.shots.find(params[:shot_id])
   end
+
+  
 
 end
