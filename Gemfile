@@ -38,6 +38,7 @@ gem 'omniauth-facebook'
 gem 'gravtastic'
 
 gem "paperclip"
+gem 'aws-sdk-v1'
 gem "kaminari"
 gem 'ransack'
 
