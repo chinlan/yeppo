@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   has_attached_file :head, styles: { medium: '200x200>', thumb: '25x25>' },
                              url: '/system/:class/:attachment/:id_partition/:style/:hash.:extension',
                              path: ':rails_root/public/system/:class/:attachment/:id_partition/:style/:hash.:extension',
-                             hash_secret: 'get_from_rake_secret'
+                             hash_secret: 'get_from_rake_secret',
                     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :s3_host_name => "s3-ap-northeast-1.amazonaws.com"
   validates_attachment :head, content_type: { content_type: /\Aimage\/.*\Z/ },
                                 size: { in: 0..1.megabytes }
