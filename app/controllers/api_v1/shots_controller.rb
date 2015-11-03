@@ -11,27 +11,39 @@ class ApiV1::ShotsController < ApiController
   end
 
   def create
-    @shot = @user.shots.new(shot_params)
-    if @shot.save
-       render :json => { :message => "Successfully created", :id => @shot.id }
-    else
-      render :json => { :message => "Validate failed" }, :status => 400
+    if authenticate_user_form_token!
+       @shot = @user.shots.new(shot_params)
+       if @shot.save
+          render :json => { :message => "Successfully created", :id => @shot.id }
+       else
+          render :json => { :message => "Validate failed" }, :status => 400
+       end
+    else 
+      render :json => { :message => "auth_token failed"}, :status => 400
     end
   end
 
   def update
-    @shot = @user.shots.find(params[:id])
-    if @shot.update
-       render :json => { :message => "Successfully updated", :id => @shot.id}
-     else 
-      render :json => { :message => "Validate failed" }, :status => 400
+    if authenticate_user_form_token!
+       @shot = @user.shots.find(params[:id])
+       if @shot.update
+          render :json => { :message => "Successfully updated", :id => @shot.id}
+       else 
+          render :json => { :message => "Validate failed" }, :status => 400
+       end
+    else
+      render :json => {:message =>"auth_token failed"}, :status => 400
     end
   end
 
   def destroy
-    @shot = @user.shots.find(params[:id])
-    @shot.destroy
-    render :json => { :message => "Successfully deleted", :id => @shot.id}
+    if authenticate_user_form_token!
+       @shot = @user.shots.find(params[:id])
+       @shot.destroy
+       render :json => { :message => "Successfully deleted", :id => @shot.id}
+    else
+      render :json => { :message => "auth_token failed"}, :status => 400
+    end
   end
 
   private

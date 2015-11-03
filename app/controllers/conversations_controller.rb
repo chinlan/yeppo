@@ -27,13 +27,15 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.get(params[:sender_id], params[:recipient_id])
+    
+       @conversation = Conversation.get(params[:sender_id], params[:recipient_id])
 
-    unless @conversation
-      @conversation = Conversation.create!(conversation_params)
-    end
+       unless @conversation
+         @conversation = Conversation.create!(conversation_params)
+       end
 
-    redirect_to conversations_path(:conversation_id => @conversation.id)
+       redirect_to conversations_path(:conversation_id => @conversation.id)
+    
   end
 
   def more_messages

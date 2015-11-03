@@ -11,11 +11,15 @@ class ApiV1::UsersController < ApiController
 
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      render :json => { :message => "Successfully updated", :id => @user.id }
+    if authenticate_user_from_token!
+       @user = User.find(params[:id])
+       if @user.update(user_params)
+          render :json => { :message => "Successfully updated", :id => @user.id }
+       else
+          render :json => { :message => "Validate failed" }, :status => 400
+       end
     else
-      render :json => { :message => "Validate failed" }, :status => 400
+      render :json => { :message => "auth_token failed"}, :status => 400
     end
   end
 
