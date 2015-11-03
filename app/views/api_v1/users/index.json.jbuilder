@@ -11,13 +11,16 @@ json.users @users do |u|
   json.role u.role
   json.head u.head
 
+
   json.shots u.shots do |s|
     json.photo s.photo
     json.description s.description
     json.shot_type s.shot_type
+    json.created_at s.created_at
     
     json.comments s.comments do |c|
       json.content c.content
+      json.created_at c.created_at
     end
   end
 end
