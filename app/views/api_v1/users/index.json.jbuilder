@@ -9,11 +9,12 @@ json.users @users do |u|
   json.content u.content
   json.status u.status
   json.role u.role
-  json.head u.head
+  json.head u.head.url(:thumb)
 
 
   json.shots u.shots do |s|
-    json.photo s.photo
+    json.photo s.photo.url(:large)
+    json.photo s.photo.url(:medium)
     json.description s.description
     json.shot_type s.shot_type
     json.created_at s.created_at
