@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030113330) do
+ActiveRecord::Schema.define(version: 20151103062541) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20151030113330) do
     t.string   "head_content_type",      limit: 255
     t.integer  "head_file_size",         limit: 4
     t.datetime "head_updated_at"
-    t.string   "status",                 limit: 255
+    t.string   "status",                 limit: 255,   default: "hide"
     t.string   "role",                   limit: 255,   default: "normal"
     t.string   "authentication_token",   limit: 255
     t.string   "friendly_id",            limit: 255
