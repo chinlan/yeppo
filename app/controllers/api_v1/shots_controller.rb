@@ -24,7 +24,7 @@ class ApiV1::ShotsController < ApiController
   end
 
   def update
-    if authenticate_user_form_token!
+    if authenticate_user_from_token!
        @shot = @user.shots.find(params[:id])
        if @shot.update
           render :json => { :message => "Successfully updated", :id => @shot.id}
@@ -37,7 +37,7 @@ class ApiV1::ShotsController < ApiController
   end
 
   def destroy
-    if authenticate_user_form_token!
+    if authenticate_user_from_token!
        @shot = @user.shots.find(params[:id])
        @shot.destroy
        render :json => { :message => "Successfully deleted", :id => @shot.id}
