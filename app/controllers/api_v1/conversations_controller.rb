@@ -1,7 +1,11 @@
 class ApiV1::ConversationsController < ApiController
 
   def index
-    @conversations = Conversation.all
+    if authenticate_user_from_token!
+       @conversations = Conversation.all
+    else
+      render :json => { :message => "auth_token failed"}, :status => 400
+    end
   end
 
   def create
@@ -12,7 +16,7 @@ class ApiV1::ConversationsController < ApiController
           @conversation = Conversation.create!(conversation_params)
        end
   
-       render :json => { :message => "Success", :id=> :conversation_id}
+       render :json => { :message => "Success", :id=> @conversation.id }
     else
        render :json => {:message => "auth_token failed"}, :status => 400
     end

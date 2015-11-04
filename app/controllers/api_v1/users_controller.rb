@@ -1,12 +1,20 @@
 class ApiV1::UsersController < ApiController
 
   def index
-    @users = User.all
+    if authenticate_user_from_token!
+       @users = User.all
+    else
+      render :json => {:message => "auth_token failed"}, :status => 400
+    end
   end
 
   def show
-    @user = User.find(params[:id])
-    render json: @user
+    if authenticate_user_from_token!
+      @user = User.find(params[:id])
+      render json: @user
+    else
+      render :json => { :message => "auth_token failed"}, :status => 400
+    end
   end
 
 
