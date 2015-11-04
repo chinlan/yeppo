@@ -49,7 +49,7 @@ class ApiV1::ShotsController < ApiController
   private
 
   def shot_params
-    params.require(:shot).permit(:description,:photo,:tag_list, :shot_type, :tag_user_id, :tag_category)
+    params.slice(:description,:photo,:tag_list, :shot_type, :tag_user_id, :tag_category)
   end
 
   def find_user
