@@ -11,7 +11,7 @@ class ApiV1::ShotsController < ApiController
   end
 
   def create
-    if authenticate_user_form_token!
+    if authenticate_user_from_token!
        @shot = @user.shots.new(shot_params)
        if @shot.save
           render :json => { :message => "Successfully created", :id => @shot.id }
