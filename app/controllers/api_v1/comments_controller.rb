@@ -28,7 +28,7 @@ class ApiV1::CommentsController < ApiController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.permit(:content)
   end
 
   def set_user
