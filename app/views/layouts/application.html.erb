@@ -6,11 +6,11 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script src="//fast.eager.io/VUcMgKqkbt.js"></script>
+ 
 </head>
 <body>
 
-
+ <script src="//fast.eager.io/VUcMgKqkbt.js"></script>
 <% if flash[:notice].present? %>
 <p class="notice alert alert-success"><%= notice %>
  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -96,7 +96,7 @@
  <%= f.submit '聯絡我們', :class=> "btn contact_submit"%>
  <% end %>
  </div>
- <p><span>Copyright</span><span>(c)</span><span>2015</span></p>
+ <p><span>Copyright</span><span>(c)</span><span>2015 Yeppo</span></p>
  
  <% if current_user && current_user.admin? %>
   <%= link_to '後台管理', admin_users_path %>
