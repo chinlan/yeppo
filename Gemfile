@@ -36,6 +36,7 @@ gem 'jquery-turbolinks'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'gravtastic'
+gem 'rest-client'
 
 gem "paperclip"
 gem 'aws-sdk-v1'
