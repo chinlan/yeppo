@@ -29,7 +29,8 @@ class ApiV1::AuthController < ApiController
         auth_hash = OmniAuth::AuthHash.new({
           uid: fb_data["id"],
           info: {
-            email: fb_data["email"]
+            email: fb_data["email"],
+            name: fb_data["name"]
           },
           credentials: {
             token: params[:access_token],
@@ -38,7 +39,7 @@ class ApiV1::AuthController < ApiController
         })
         user = User.from_omniauth(auth_hash)
       end
-
+      
       success = fb_data && user.persisted?
     end
 
