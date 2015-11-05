@@ -3,6 +3,7 @@ class ShotsController < ApplicationController
   before_action :set_user
 
   def new
+    @dark = true
     @shot = Shot.new
   end
 
@@ -36,6 +37,7 @@ class ShotsController < ApplicationController
   end
 
   def edit
+    @dark = true
     @shot = @user.shots.find(params[:id])
   end
 
