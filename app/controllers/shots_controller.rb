@@ -13,6 +13,7 @@ class ShotsController < ApplicationController
     if @shot.save
       redirect_to user_path(@user)
      else
+      flash[:alert] = "作品類型和照片為必填欄位喔"
       render 'new'
     end
   end

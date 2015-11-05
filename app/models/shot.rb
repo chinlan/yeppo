@@ -20,7 +20,7 @@ class Shot < ActiveRecord::Base
                              hash_secret: 'get_from_rake_secret',
                     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :s3_host_name => "s3-ap-northeast-1.amazonaws.com"
   validates_attachment :photo, content_type: { content_type: /\Aimage\/.*\Z/ },
-                                size: { in: 0..1.megabytes }
+                                size: { in: 0..5.megabytes }
 
   scope :only_model, -> { where( :shot_type => "model") }
   scope :only_photographer, -> { where( :shot_type => "photographer") }

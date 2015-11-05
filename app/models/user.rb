@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
                              hash_secret: 'get_from_rake_secret',
                     :storage => :s3, :s3_credentials => "#{Rails.root}/config/s3.yml", :s3_host_name => "s3-ap-northeast-1.amazonaws.com"
   validates_attachment :head, content_type: { content_type: /\Aimage\/.*\Z/ },
-                                size: { in: 0..1.megabytes }
+                                size: { in: 0..3.megabytes }
   
   # validates_presence_of :friendly_id
   # validates_uniqueness_of :friendly_id

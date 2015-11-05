@@ -18,7 +18,7 @@
 //= require bootstrap-sprockets
 //= require select2
 
-$(document).on("page:change", function(e){
+$(document).ready( function(e){
 
   $('#contact_button').click(function(e){
     e.preventDefault();
