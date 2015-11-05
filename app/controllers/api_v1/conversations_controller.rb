@@ -1,15 +1,12 @@
 class ApiV1::ConversationsController < ApiController
 
+  before_action :authenticate_user!
+  
   def index
-    if authenticate_user_from_token!
        @conversations = Conversation.all
-    else
-      render :json => { :message => "auth_token failed"}, :status => 400
-    end
   end
 
   def create
-    if authenticate_user_from_token!
        if Conversation.between(params[:sender_id], params[:recipient_id]).present?
           @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
        else
@@ -17,9 +14,6 @@ class ApiV1::ConversationsController < ApiController
        end
   
        render :json => { :message => "Success", :id=> @conversation.id }
-    else
-       render :json => {:message => "auth_token failed"}, :status => 400
-    end
   end
 
 

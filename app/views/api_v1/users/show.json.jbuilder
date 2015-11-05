@@ -1,17 +1,13 @@
-json.metadata do
-  json.total User.count
-end
+json.data @user 
+  json.id @user.id
+  json.name @user.name
+  json.location @user.location
+  json.content @user.content
+  json.status @user.status
+  json.role @user.role
+  json.head @user.head
 
-json.data @user do |u|
-  json.id u.id
-  json.name u.name
-  json.location u.location
-  json.content u.content
-  json.status u.status
-  json.role u.role
-  json.head u.head
-
-  json.shots u.shots do |s|
+  json.shots @user.shots do |s|
     json.photo s.photo
     json.description s.description
     json.shot_type s.shot_type
@@ -20,4 +16,3 @@ json.data @user do |u|
       json.content c.content
     end
   end
-end

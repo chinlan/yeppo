@@ -18,13 +18,14 @@
 //= require bootstrap-sprockets
 //= require select2
 
-$(document).ready(function(e){
+$(document).on("page:change", function(e){
+
   $('#contact_button').click(function(e){
-  e.preventDefault();
-  $('#footer').css({"height": "350px"});
-  $('#contact_form').show();
-  $('#contact_button').hide();
-});
+    e.preventDefault();
+    $('#footer').css({"height": "350px"});
+    $('#contact_form').show();
+    $('#contact_button').hide();
+  });
 
 })
 

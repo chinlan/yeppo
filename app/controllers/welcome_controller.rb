@@ -16,6 +16,10 @@ class WelcomeController < ApplicationController
     render "index"
   end
 
+  def about
+    
+  end
+
   def contact
     @contact = Contact.new(contact_params)
      if @contact.save

@@ -1,3 +1,7 @@
 $(".message_body").val("");
 
-$("#message_table").prepend("<%=j render :partial => "message", :locals => { :m => @message } %>");
+if ( $("#message_table tbody").length == 0 ) {
+  $("#message_table").append("<tbody></tbody>")
+}
+
+$("#message_table tbody").prepend("<%=j render :partial => "message", :locals => { :m => @message } %>");
