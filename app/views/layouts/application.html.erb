@@ -28,7 +28,8 @@
   <div class="container">
   <div id="nav">
   <ul>
-   <li><%= link_to 'Yeppo', root_path %></li>
+   <li><span class="glyphicon glyphicon-home"></span>
+       <%= link_to 'Yeppo', root_path %></li>
    <li><span class="glyphicon glyphicon-camera"></span>
        <%= link_to '  攝影師作品', photographers_path(:order => params[:order]) %></li>
    <li><span class="glyphicon glyphicon-user"></span><%= link_to '  模特兒作品', models_path(:order => params[:order]) %></li>

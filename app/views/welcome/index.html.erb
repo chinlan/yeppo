@@ -8,7 +8,7 @@
 
 
 <div class="container">
-<h1 id ="logo">Yeppo</h1>
+<div id ="logo"><%= image_tag("logo.jpg", :size => "180x80") %></div>
 
 <div id="search">
   <%= search_form_for @search, :url => root_path do |f| %>
