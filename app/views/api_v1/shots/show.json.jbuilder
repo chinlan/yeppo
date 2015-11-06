@@ -13,7 +13,9 @@ json.shot @shot
 
   json.comments @shot.comments do |c|
     json.content c.content
+    json.user_id c.user_id
+    json.created_at c.created_at
+    json.shot_id c.shot_id
   end
 
 
-end

@@ -7,12 +7,12 @@ Rails.application.routes.draw do
       resources :messages, only: [:create] 
     end
     resources :relationships, only: [:create, :destroy]
-    resources :users, :only => [:index, :show, :edit, :update] do
-      resources :shots do
-        resources :comments, :only => [:create, :destroy]
-        resources :likes, :only => [:create, :destroy]
-      end
+    resources :users, :only => [:index, :show, :edit, :update] 
+    resources :shots do
+      resources :comments, :only => [:create, :destroy]
+      resources :likes, :only => [:create, :destroy]
     end
+    
   
   end
 

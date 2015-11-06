@@ -1,7 +1,7 @@
 class ApiV1::CommentsController < ApiController
   
   before_action :authenticate_user!
-  before_filter :set_user, :set_shot
+  before_filter :set_shot
 
   def create
     
@@ -28,11 +28,8 @@ class ApiV1::CommentsController < ApiController
     params.permit(:content)
   end
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
 
   def set_shot
-    @shot = @user.shots.find(params[:shot_id])
+    @shot = Shot.find(params[:shot_id])
   end
 end
