@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
     resources :conversations, only: [:index, :create] do
-      resources :messages, only: [:create] 
+      resources :messages, only: [:index, :create] 
     end
     resources :relationships, only: [:create, :destroy]
     resources :users, :only => [:index, :show, :edit, :update] 

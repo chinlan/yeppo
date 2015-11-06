@@ -4,7 +4,7 @@ class ApiV1::ShotsController < ApiController
   
   
   def index
-    @shots = Shot.all  
+    @shots = Shot.order("id DESC")
   end
   
   def show

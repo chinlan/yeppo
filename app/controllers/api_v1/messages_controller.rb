@@ -3,6 +3,10 @@ class ApiV1::MessagesController < ApiController
   before_action :authenticate_user!
   before_action :find_conversation
 
+  def index
+    @messages = @conversation.messages.order("id DESC")
+  end
+
   def create
     @message = @conversation.messages.new(message_params)
     if @message.save
