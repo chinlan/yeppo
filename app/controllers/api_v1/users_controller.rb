@@ -21,4 +21,10 @@ class ApiV1::UsersController < ApiController
      end
   end
 
+  private
+
+  def user_params
+    params.permit(:friendly_id,:name,:location,:content, :head, :status)
+  end
+
 end
