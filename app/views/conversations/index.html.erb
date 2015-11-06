@@ -12,8 +12,9 @@
         <% recipient = User.find(c.sender_id) %>
       <% end %>
       <ul>
-        <li> <i class="glyphicon glyphicon-comment"></i>
-          <span>  <%= link_to recipient.name, conversation_path(c), :remote => true %></span>
+        <li class="xxx"> 
+          <i class="glyphicon glyphicon-comment"></i>
+          <span>  <%= link_to recipient.name, conversation_path(c), :remote => true, :id => "recipient-#{c.id}" %></span>
           <% if (m = c.find_last_to_me_message(current_user)) && (!m.read) %>
            <i class="glyphicon glyphicon-exclamation-sign red"></i>
           <% end %>

@@ -16,7 +16,6 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     @messages = @conversation.messages.includes(:user).order("id DESC").limit(10)
     @message = @conversation.messages.new
-       
     last_to_me_message = @conversation.find_last_to_me_message(current_user)
     if last_to_me_message && !last_to_me_message.read
         last_to_me_message.read = true

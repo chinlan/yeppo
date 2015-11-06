@@ -4,7 +4,7 @@
       <%= f.text_area :body, :class => "form-control message_body" %>
     </div>
       <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-      <%= f.submit "回覆", :class => "btn reply" %>
+      <%= f.submit "送出", :class => "btn reply" %>
   <% end %>
 <div class="table-responsive"> 
   <table class="table table-striped" id ="message_table">

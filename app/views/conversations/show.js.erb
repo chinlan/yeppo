@@ -1,3 +1,6 @@
 
 $("#message_panel").html(" <%= j render :partial => "messages/panel", :locals => {  :conversation => @conversation, :messages => @messages, :message => @message } %> ");
 $(".red").remove();
+
+$(".xxx").children().children().removeClass("blue");
+$("#recipient-<%=@conversation.id%>").addClass("blue");
