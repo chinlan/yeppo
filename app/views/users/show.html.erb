@@ -22,7 +22,7 @@
   <% if @user.head.exists? %>
     <p><%= image_tag(@user.head.url(:medium)) %></p>
   <% else %>
-    <p><%= image_tag current_user.gravatar_url %></p>
+    <p><%= image_tag @user.gravatar_url %></p>
   <% end %>
   <p>姓名/工作室名稱： <%= @user.name %></p>
   <p>所在地： <%= @user.location %></p>
