@@ -5,7 +5,7 @@ json.data @user
   json.content @user.content
   json.status @user.status
   json.role @user.role
-  json.head @user.head.url(:thumb)
+  json.head @user.head.url(:medium)
 
   json.shots @user.shots do |s|
     json.photo s.photo
