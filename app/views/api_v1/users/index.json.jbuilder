@@ -9,7 +9,7 @@ json.users @users do |u|
   json.content u.content
   json.status u.status
   json.role u.role
-  json.head u.head.url(:thumb)
+  json.head u.head.url(:medium)
 
 
   json.shots u.shots do |s|
