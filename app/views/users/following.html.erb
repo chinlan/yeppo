@@ -27,7 +27,7 @@
         <% @users.each do |u| %>
         <tr class="users">
         <% if u.head.exists? %>
-         <td> <%= link_to image_tag(u.head.url(:thumb)), user_path(u) %></td>
+         <td> <%= link_to image_tag(u.head.url(:medium)), user_path(u) %><%= link_to u.name, user_path(u) %></td>
         <% else %>
          <td> <%= link_to u.name, user_path(u) %></td>
         <% end %> 
