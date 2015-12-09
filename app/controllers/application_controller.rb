@@ -36,4 +36,18 @@ class ApplicationController < ActionController::Base
       stored_location_for(resource) || request.referer || root_path
     end
   end
+
+  
+
+  
+  # def after_sign_out_path_for(resource)
+  #   if session[:user_return_to] == nil
+  #     stored_location_for(resource) || request.referer || root_path
+  #   else
+  #     super
+  #   end
+  # end
+
+
+  
 end
